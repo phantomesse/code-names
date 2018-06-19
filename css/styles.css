@@ -7,6 +7,8 @@
   --card-bg-color: #2c3e50;
   --card-red-bg-color: #e74c3c;
   --card-blue-bg-color: #3498db;
+  --card-yellow-bg-color: #f39c12;
+  --card-black-bg-color: #7f8c8d;
 
   --unit: 8px;
   --gap: calc(var(--unit) * 2);
@@ -66,6 +68,29 @@ main {
 .card:focus {
   border-color: rgba(0, 0, 0, 0.2);
   outline: none;
+}
+
+.card.red,
+.card.blue,
+.card.yellow,
+.card.black {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.card.red {
+  background: var(--card-red-bg-color);
+}
+
+.card.blue {
+  background: var(--card-blue-bg-color);
+}
+
+.card.yellow {
+  background: var(--card-yellow-bg-color);
+}
+
+.card.black {
+  background: var(--card-black-bg-color);
 }
 
 footer {
