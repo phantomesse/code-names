@@ -30,6 +30,7 @@ body {
 }
 
 header {
+  flex-shrink: 0;
   padding: var(--gap) var(--gap) 0;
 }
 
@@ -51,7 +52,10 @@ main {
 .card {
   align-items: center;
   background: var(--card-bg-color);
+  border: var(--unit) transparent solid;
   border-radius: var(--unit);
+  box-sizing: border-box;
+  color: var(--fg-color);
   display: flex;
   font-size: calc(var(--unit) * 3);
   font-weight: 500;
@@ -59,9 +63,15 @@ main {
   padding: calc(var(--unit) * 2);
 }
 
+.card:focus {
+  border-color: rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
 footer {
   align-items: center;
   display: flex;
+  flex-shrink: 0;
   font-size: calc(var(--unit) * 2);
   justify-content: flex-end;
   padding: 0 var(--gap) var(--gap);
