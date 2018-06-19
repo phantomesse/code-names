@@ -1,6 +1,7 @@
 var Game = function() {
   this.cards = [];
   this.turn = _getFirstTurn();
+  this.view = View.NORMAL;
 
   // Set who goes first.
   $('.turn').text((this.turn === Color.RED ? 'Red' : 'Blue') + '\'s Turn');
@@ -38,6 +39,23 @@ var Game = function() {
       card.render();
     });
   });
+}
+
+Game.prototype.toggleView = function() {
+  console.log('toggling view ' + this.view);
+  if (this.view === View.SPYMASTER) {
+    this.view = View.NORMAL;
+  } else {
+    this.view = View.SPYMASTER;
+  }
+
+  if (this.view === View.SPYMASTER) {
+    MAIN_CONTAINER.addClass('spymaster');
+    $('.spymaster-toggle').text('Normal');
+  } else {
+    MAIN_CONTAINER.removeClass('spymaster');
+    $('.spymaster-toggle').text('Spymaster');
+  }
 }
 
 /** Gets GAME_WORD_COUNT random words. */

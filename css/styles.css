@@ -58,6 +58,7 @@ main {
   border-radius: var(--unit);
   box-sizing: border-box;
   color: var(--fg-color);
+  cursor: pointer;
   display: flex;
   font-size: calc(var(--unit) * 3);
   font-weight: 500;
@@ -65,31 +66,45 @@ main {
   padding: calc(var(--unit) * 2);
 }
 
+.card:hover {
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
 .card:focus {
   border-color: rgba(0, 0, 0, 0.2);
   outline: none;
 }
 
-.card.red,
-.card.blue,
-.card.yellow,
-.card.black {
+.card.active {
+  pointer-events: none;
+}
+
+.spymaster .card,
+.card.active {
   color: rgba(0, 0, 0, 0.4);
 }
 
-.card.red {
+.spymaster .card.active {
+  opacity: 0.2;
+}
+
+.spymaster .card.red,
+.card.active.red {
   background: var(--card-red-bg-color);
 }
 
-.card.blue {
+.spymaster .card.blue,
+.card.active.blue {
   background: var(--card-blue-bg-color);
 }
 
-.card.yellow {
+.spymaster .card.yellow,
+.card.active.yellow {
   background: var(--card-yellow-bg-color);
 }
 
-.card.black {
+.spymaster .card.black,
+.card.active.black {
   background: var(--card-black-bg-color);
 }
 

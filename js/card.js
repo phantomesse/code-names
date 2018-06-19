@@ -7,6 +7,9 @@ Card.prototype.render = function() {
   var card = $('<button>')
     .addClass('card')
     .text(this.word)
+    .click(function() {
+      $(this).addClass('active');
+    })
     .keydown(function(event) {
       var keyCode = event.keyCode;
       if (keyCode < 37 || keyCode > 40) return;
@@ -14,6 +17,7 @@ Card.prototype.render = function() {
       var index = $(this).index();
       var focusIndex;
 
+      // TODO: Skip cards that have been clicked on.
       switch (event.keyCode) {
         case 37: // Left.
           if (index == 0) return;

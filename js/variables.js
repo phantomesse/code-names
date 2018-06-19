@@ -12,3 +12,8 @@ var Color = {
   YELLOW: 'yellow',
   BLACK: 'black'
 };
+
+var View = {
+  NORMAL: 'normal',
+  SPYMASTER: 'spymaster'
+}
