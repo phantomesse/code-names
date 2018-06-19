@@ -1,0 +1,10 @@
+{
+  "name": "code-names",
+  "version": "0.0.1",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}

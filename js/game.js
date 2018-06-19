@@ -106,3 +106,4 @@ function _getRandomWords() {
 function _getFirstTurn() {
   return parseInt(Math.random() * 2) === 0 ? Color.RED : Color.BLUE;
 }
+
