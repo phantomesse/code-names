@@ -17,7 +17,7 @@ function getRandomWords() {
     var totalWordCount = response.length;
     var words = new Set();
 
-    for (var i = 0; i < GAME_WORD_COUNT; i++) {
+    while (words.size < GAME_WORD_COUNT) {
       var random = parseInt(Math.random() * totalWordCount);
       var word = response[random];
       words.add(word);
