@@ -3,8 +3,11 @@ var Game = function() {
   this.turn = _getFirstTurn();
   this.view = View.NORMAL;
 
+  this.redWordsLeft;
+  this.blueWordsLeft;
+
   // Set who goes first.
-  $('.turn').text((this.turn === Color.RED ? 'Red' : 'Blue') + '\'s Turn');
+  $('.turn').text((this.turn === Color.RED ? 'Red' : 'Blue') + ' goes first');
 
   // Create cards.
   var self = this;
@@ -14,8 +17,9 @@ var Game = function() {
     var blueCount = self.turn === Color.BLUE ? 9 : 8;
     var yellowCount = GAME_WORD_COUNT - blueCount - redCount - blackCount;
 
-    $('.score.blue').text(blueCount + ' words left');
-    $('.score.red').text(redCount + ' words left');
+    self.redWordsLeft = redCount;
+    self.blueWordsLeft = blueCount;
+    self.updateScore();
 
     words.forEach(function(word) {
       var random = parseInt(Math.random() * (redCount + blueCount + blackCount + yellowCount));
@@ -37,10 +41,19 @@ var Game = function() {
       var card = new Card(word, color);
       self.cards.push(card);
       card.render();
+      card.element.on('update-score', function(event, color) {
+        if (color === Color.RED) {
+          self.redWordsLeft--;
+        } else if (color === Color.BLUE) {
+          self.blueWordsLeft--;
+        }
+        self.updateScore();
+      });
     });
   });
 }
 
+/** Toggles between spymaster and normal views. */
 Game.prototype.toggleView = function() {
   console.log('toggling view ' + this.view);
   if (this.view === View.SPYMASTER) {
@@ -56,6 +69,17 @@ Game.prototype.toggleView = function() {
     MAIN_CONTAINER.removeClass('spymaster');
     $('.spymaster-toggle').text('Spymaster');
   }
+}
+
+/** Updates the score with the number of words left to guess for both red and blue teams. */
+Game.prototype.updateScore = function() {
+  var redScoreMessage = this.redWordsLeft
+      + ((this.redWordsLeft === 1) ? ' word ' : ' words ') + 'left';
+  var blueScoreMessage = this.blueWordsLeft
+      + ((this.blueWordsLeft === 1) ? ' word ' : ' words ') + 'left';
+
+  $('.score.red').text(redScoreMessage);
+  $('.score.blue').text(blueScoreMessage);
 }
 
 /** Gets GAME_WORD_COUNT random words. */

@@ -1,14 +1,20 @@
 var Card = function(word, color) {
   this.word = word;
   this.color = color;
+  this.element;
 }
 
 Card.prototype.render = function() {
-  var card = $('<button>')
+  var self = this;
+  this.element = $('<button>')
     .addClass('card')
     .text(this.word)
     .click(function() {
       $(this).addClass('active');
+
+      if (self.color === Color.RED || self.color === Color.BLUE) {
+        $(this).trigger('update-score', [self.color]);
+      }
     })
     .keydown(function(event) {
       var keyCode = event.keyCode;
@@ -44,16 +50,16 @@ Card.prototype.render = function() {
 
   switch (this.color) {
     case Color.RED:
-      card.addClass('red');
+      this.element.addClass('red');
       break;
     case Color.BLUE:
-      card.addClass('blue');
+      this.element.addClass('blue');
       break;
     case Color.YELLOW:
-      card.addClass('yellow');
+      this.element.addClass('yellow');
       break;
     case Color.BLACK:
-      card.addClass('black');
+      this.element.addClass('black');
       break;
   }
 }
