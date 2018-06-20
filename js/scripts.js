@@ -35,6 +35,8 @@ function getSeed() {
 function getWordBank(fileName) {
   var deferred = $.Deferred();
 
+  console.log(window.location);
+
   $.get(fileName, function(response) {
     deferred.resolve(response);
   });
