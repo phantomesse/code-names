@@ -1,7 +1,3 @@
-const ROW_WORD_COUNT = 5;
-const COLUMN_WORD_COUNT = 5;
-const GAME_WORD_COUNT = ROW_WORD_COUNT * COLUMN_WORD_COUNT;
-
 /** Sets up the Code Names game by generating a random Game with Cards based on a seed. */
 (function() {
   var Utils = (function() {
@@ -34,13 +30,13 @@ const GAME_WORD_COUNT = ROW_WORD_COUNT * COLUMN_WORD_COUNT;
     }
 
     /** Reads a number of random words for the Cards. */
-    Utils.prototype.getWords = function getWords() {
+    Utils.prototype.getWords = function getWords(wordCount) {
       var words = new Set();
 
       var i = 0;
-      while (words.size < GAME_WORD_COUNT) {
+      while (words.size < wordCount) {
         i++;
-        var randomIndex = parseInt(this.getRandomNumber(i.toString()) * 255);
+        var randomIndex = parseInt(this.getRandomNumber(i.toString()) * this.wordBank.length);
         words.add(this.wordBank[randomIndex]);
       }
 

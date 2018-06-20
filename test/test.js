@@ -5,6 +5,7 @@ var Utils = require('../js/utils');
 describe('Utils', function() {
   var seeds;
   var wordBank;
+  var wordCount = 25;
 
   before(function() {
     seeds = [
@@ -32,40 +33,40 @@ describe('Utils', function() {
   it('#getWords returns a set of unique words', function() {
     var utils = new Utils(seeds[0], wordBank);
     var expectedSet = new Set([
-      'Crust',
-      'Ergonomic',
-      'Deep',
-      'Cuff',
-      'Archaeologist',
-      'Ear',
-      'Flagpole',
-      'Fringe',
-      'Chef',
-      'Fix',
-      'Diver',
-      'Banana',
-      'Buy',
-      'Aircraft',
-      'Curtain',
+      'Opaque',
+      'Shower',
+      'Pencil',
+      'Organ',
+      'Bedbug',
+      'Salmon',
+      'Tachometer',
+      'Wag',
+      'Hut',
+      'Swamp',
+      'Pocket',
+      'Bruise',
       'Flu',
-      'Battery',
-      'Garbage',
-      'Broken',
-      'Dart',
-      'Dawn',
-      'Cheerleader',
-      'Birthday',
-      'Frog',
-      'Cone'
+      'Applause',
+      'Ovation',
+      'Time',
+      'Candy',
+      'Wig',
+      'Escalator',
+      'Talk',
+      'Park',
+      'Pastry',
+      'Hungry',
+      'Cog',
+      'Watermelon'
     ]);
-    assert.deepEqual(utils.getWords(), expectedSet);
+    assert.deepEqual(utils.getWords(wordCount), expectedSet);
   });
 
   it('#getWords returns the same set of unique words for the same seed', function() {
     for (var i = 0; i < seeds.length; i++) {
       var utils1 = new Utils(seeds[i], wordBank);
       var utils2 = new Utils(seeds[i], wordBank);
-      assert.deepEqual(utils1.getWords(), utils2.getWords());
+      assert.deepEqual(utils1.getWords(wordCount), utils2.getWords(wordCount));
     }
   });
 });
