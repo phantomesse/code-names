@@ -1,14 +1,14 @@
 var fs = require('fs');
 var assert = require('assert');
-var Setup = require('../js/setup');
+var Utils = require('../js/utils');
 
-describe('Setup', function() {
+describe('Utils', function() {
   var setup;
 
   before(function() {
     var seed = 'hello-world';
     var wordBank = JSON.parse(fs.readFileSync('data/words.json', 'utf8'));
-    setup = new Setup(seed, wordBank);
+    setup = new Utils(seed, wordBank);
   });
 
   it('#getRandomNumber', function() {

@@ -4,8 +4,8 @@ const GAME_WORD_COUNT = ROW_WORD_COUNT * COLUMN_WORD_COUNT;
 
 /** Sets up the Code Names game by generating a random Game with Cards based on a seed. */
 (function() {
-  var Setup = (function() {
-    var Setup = function(seed, wordBank) {
+  var Utils = (function() {
+    var Utils = function(seed, wordBank) {
 
       /**
        * Seed used to ensure that randomly generating Game and Cards are always randomly generated
@@ -22,7 +22,7 @@ const GAME_WORD_COUNT = ROW_WORD_COUNT * COLUMN_WORD_COUNT;
      *
      * https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
      **/
-    Setup.prototype.getRandomNumber = function getRandomNumber(seed) {
+    Utils.prototype.getRandomNumber = function getRandomNumber(seed) {
       seed += this.seed;
       var numString = '';
       for (var i = 0; i < seed.length; i++) {
@@ -34,7 +34,7 @@ const GAME_WORD_COUNT = ROW_WORD_COUNT * COLUMN_WORD_COUNT;
     }
 
     /** Reads a number of random words for the Cards. */
-    Setup.prototype.getWords = function getWords() {
+    Utils.prototype.getWords = function getWords() {
       var words = new Set();
 
       var i = 0;
@@ -47,12 +47,12 @@ const GAME_WORD_COUNT = ROW_WORD_COUNT * COLUMN_WORD_COUNT;
       return words;
     };
 
-    return Setup;
+    return Utils;
   })();
 
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-    module.exports = Setup;
+    module.exports = Utils;
   } else {
-    window.Setup = Setup;
+    window.Utils = Utils;
   }
 })();
