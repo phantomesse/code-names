@@ -1,4 +1,4 @@
-var WORDS_FILENAME = '../data/words.json';
+var WORD_BANK_FILE_NAME = '../data/words.json';
 
 var MAIN_CONTAINER = $('main');
 

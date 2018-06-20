@@ -1,4 +1,6 @@
-var Game = function() {
+var Game = function(words) {
+  this.word = words;
+
   this.cards = [];
   this.turn = _getFirstTurn();
   this.view = View.NORMAL;
@@ -11,7 +13,7 @@ var Game = function() {
 
   // Create cards.
   var self = this;
-  _getRandomWords().done(function(words) {
+  
     var blackCount = 1;
     var redCount = self.turn === Color.RED ? 9 : 8;
     var blueCount = self.turn === Color.BLUE ? 9 : 8;
@@ -50,7 +52,6 @@ var Game = function() {
         self.updateScore();
       });
     });
-  });
 }
 
 /** Toggles between spymaster and normal views. */
@@ -80,26 +81,6 @@ Game.prototype.updateScore = function() {
 
   $('.score.red').text(redScoreMessage);
   $('.score.blue').text(blueScoreMessage);
-}
-
-/** Gets GAME_WORD_COUNT random words. */
-function _getRandomWords() {
-  var deferred = $.Deferred();
-
-  $.get(WORDS_FILENAME, function(response) {
-    var totalWordCount = response.length;
-    var words = new Set();
-
-    while (words.size < GAME_WORD_COUNT) {
-      var random = parseInt(Math.random() * totalWordCount);
-      var word = response[random];
-      words.add(word);
-    }
-
-    deferred.resolve(words);
-  });
-
-  return deferred.promise();
 }
 
 /** Determines randomly if red or blue goes first. */
