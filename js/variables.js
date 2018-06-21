@@ -1,5 +1,5 @@
 /** Variables. */
-const WORD_BANK_FILE_NAME = '../data/words.json';
+const WORD_BANK_FILE_NAME = 'data/words.json';
 
 const ROW_WORD_COUNT = 5;
 const COLUMN_WORD_COUNT = 5;
