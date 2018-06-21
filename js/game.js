@@ -14,6 +14,7 @@ var Game = function(words, colors, firstTurnColor, colorCounts) {
   this.updateScore();
 
   // Create cards.
+  var self = this;
   var iterator = this.words.values();
   for (var i = 0; i < this.words.size; i++) {
     var card = new Card(iterator.next().value, colors[i]);
@@ -21,11 +22,11 @@ var Game = function(words, colors, firstTurnColor, colorCounts) {
     card.render();
     card.element.on('update-score', function(event, color) {
       if (color === Color.RED) {
-        this.redWordsLeft--;
+        self.redWordsLeft--;
       } else if (color === Color.BLUE) {
-        this.blueWordsLeft--;
+        self.blueWordsLeft--;
       }
-      this.updateScore();
+      self.updateScore();
     });
   }
 }
