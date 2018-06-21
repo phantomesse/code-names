@@ -1,19 +1,29 @@
-var WORD_BANK_FILE_NAME = '../data/words.json';
+/** Variables. */
+const WORD_BANK_FILE_NAME = '../data/words.json';
 
-var MAIN_CONTAINER = $('main');
+const ROW_WORD_COUNT = 5;
+const COLUMN_WORD_COUNT = 5;
+const GAME_WORD_COUNT = ROW_WORD_COUNT * COLUMN_WORD_COUNT;
 
-var ROW_WORD_COUNT = 5;
-var COLUMN_WORD_COUNT = 5;
-var GAME_WORD_COUNT = ROW_WORD_COUNT * COLUMN_WORD_COUNT;
+const BLACK_WORD_COUNT = 1;
 
-var Color = {
-  RED: 'red',
+const Color = {
+  BLACK: 'black',
   BLUE: 'blue',
-  YELLOW: 'yellow',
-  BLACK: 'black'
+  RED: 'red',
+  YELLOW: 'yellow'
 };
 
-var View = {
+const View = {
   NORMAL: 'normal',
   SPYMASTER: 'spymaster'
+}
+
+/* Export modules for testing. */
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+  module.exports = {
+    GAME_WORD_COUNT: GAME_WORD_COUNT,
+    BLACK_WORD_COUNT: BLACK_WORD_COUNT,
+    Color: Color
+  };
 }

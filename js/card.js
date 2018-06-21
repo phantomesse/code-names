@@ -1,3 +1,5 @@
+var MAIN_CONTAINER = $('main');
+
 var Card = function(word, color) {
   this.word = word;
   this.color = color;
