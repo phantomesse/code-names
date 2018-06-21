@@ -53,9 +53,8 @@ var Utils = (function() {
     return random === 0 ? Color.BLUE : Color.RED;
   };
 
-  /** Returns a number of random colors for the Cards. */
-  Utils.prototype.getColors = function getColors(wordCount, blackWordCount) {
-    // Get word counts.
+  /** Returns the number of each color in an map of color to int. */
+  Utils.prototype.getColorCounts = function getColorCounts(wordCount, blackWordCount) {
     var blueWordCount = parseInt((wordCount - blackWordCount) / 3);
     var redWordCount = blueWordCount;
     if (this.getFirstTurnColor() === Color.BLUE) {
@@ -65,14 +64,25 @@ var Utils = (function() {
     }
     var yellowWordCount = wordCount - blackWordCount - blueWordCount - redWordCount;
 
+    var map = {};
+    map[Color.BLACK] = blackWordCount;
+    map[Color.BLUE] = blueWordCount;
+    map[Color.RED] = redWordCount;
+    map[Color.YELLOW] = yellowWordCount;
+    return map;
+  }
+
+  /** Returns a number of random colors for the Cards. */
+  Utils.prototype.getColors = function getColors(wordCount, blackWordCount) {
     var colors = [];
+    var colorCounts = this.getColorCounts(wordCount, blackWordCount);
 
     var randomSeed = 0;
     var self = this;
-    placeWords(Color.BLACK, blackWordCount);
-    placeWords(Color.BLUE, blueWordCount);
-    placeWords(Color.RED, redWordCount);
-    placeWords(Color.YELLOW, yellowWordCount);
+    placeWords(Color.BLACK, colorCounts[Color.BLACK]);
+    placeWords(Color.BLUE, colorCounts[Color.BLUE]);
+    placeWords(Color.RED, colorCounts[Color.RED]);
+    placeWords(Color.YELLOW, colorCounts[Color.YELLOW]);
 
     function placeWords(color, count) {
       while (count > 0) {

@@ -1,57 +1,33 @@
-var Game = function(words) {
-  this.word = words;
+var Game = function(words, colors, firstTurnColor, colorCounts) {
+  this.words = words;
+  this.colors = colors;
+  this.firstTurnColor = firstTurnColor;
 
   this.cards = [];
-  this.turn = _getFirstTurn();
   this.view = View.NORMAL;
 
-  this.redWordsLeft;
-  this.blueWordsLeft;
-
   // Set who goes first.
-  $('.turn').text((this.turn === Color.RED ? 'Red' : 'Blue') + ' goes first');
+  $('.turn').text(firstTurnColor + ' goes first');
+
+  this.blueWordsLeft = colorCounts[Color.BLUE];
+  this.redWordsLeft = colorCounts[Color.RED];
+  this.updateScore();
 
   // Create cards.
-  var self = this;
-  
-    var blackCount = 1;
-    var redCount = self.turn === Color.RED ? 9 : 8;
-    var blueCount = self.turn === Color.BLUE ? 9 : 8;
-    var yellowCount = GAME_WORD_COUNT - blueCount - redCount - blackCount;
-
-    self.redWordsLeft = redCount;
-    self.blueWordsLeft = blueCount;
-    self.updateScore();
-
-    words.forEach(function(word) {
-      var random = parseInt(Math.random() * (redCount + blueCount + blackCount + yellowCount));
-      var color;
-      if (blackCount > 0 && random == 0) {
-        color = Color.BLACK;
-        blackCount--;
-      } else if (redCount > 0 && random > 0 && random <= redCount) {
-        color = Color.RED;
-        redCount--;
-      } else if (blueCount > 0 && random > redCount && random <= redCount + blueCount) {
-        color = Color.BLUE;
-        blueCount--;
-      } else {
-        color = Color.YELLOW;
-        yellowCount--;
+  var iterator = this.words.values();
+  for (var i = 0; i < this.words.size; i++) {
+    var card = new Card(iterator.next().value, colors[i]);
+    this.cards.push(card);
+    card.render();
+    card.element.on('update-score', function(event, color) {
+      if (color === Color.RED) {
+        this.redWordsLeft--;
+      } else if (color === Color.BLUE) {
+        this.blueWordsLeft--;
       }
-
-      var card = new Card(word, color);
-      self.cards.push(card);
-      card.render();
-      card.element.on('update-score', function(event, color) {
-        if (color === Color.RED) {
-          self.redWordsLeft--;
-        } else if (color === Color.BLUE) {
-          self.blueWordsLeft--;
-        }
-        self.updateScore();
-      });
+      this.updateScore();
     });
+  }
 }
 
 /** Toggles between spymaster and normal views. */
@@ -82,9 +58,3 @@ Game.prototype.updateScore = function() {
   $('.score.red').text(redScoreMessage);
   $('.score.blue').text(blueScoreMessage);
 }
-
-/** Determines randomly if red or blue goes first. */
-function _getFirstTurn() {
-  return parseInt(Math.random() * 2) === 0 ? Color.RED : Color.BLUE;
-}
-

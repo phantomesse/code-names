@@ -8,10 +8,10 @@ const GAME_WORD_COUNT = ROW_WORD_COUNT * COLUMN_WORD_COUNT;
 const BLACK_WORD_COUNT = 1;
 
 const Color = {
-  BLACK: 'black',
-  BLUE: 'blue',
-  RED: 'red',
-  YELLOW: 'yellow'
+  BLACK: 'Black',
+  BLUE: 'Blue',
+  RED: 'Red',
+  YELLOW: 'Yellow'
 };
 
 const View = {

@@ -1,8 +1,4 @@
-/*var game = new Game();
-
-function toggleView() {
-  game.toggleView();
-}*/
+var game;
 
 $(document).ready(function() {
   var seed = getSeed();
@@ -10,7 +6,11 @@ $(document).ready(function() {
   getWordBank(WORD_BANK_FILE_NAME).done(function(wordBank) {
     var utils = new Utils(seed, wordBank);
     var words = utils.getWords(GAME_WORD_COUNT);
-    var game = new Game(words);
+    var colors = utils.getColors(GAME_WORD_COUNT, BLACK_WORD_COUNT);
+    var firstTurnColor = utils.getFirstTurnColor();
+    var colorCounts = utils.getColorCounts(GAME_WORD_COUNT, BLACK_WORD_COUNT);
+
+    game = new Game(words, colors, firstTurnColor, colorCounts);
   });
 });
 
@@ -40,4 +40,9 @@ function getWordBank(fileName) {
   });
 
   return deferred.promise();
+}
+
+function toggleView() {
+  console.log('hello');
+  game.toggleView();
 }

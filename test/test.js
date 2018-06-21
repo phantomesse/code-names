@@ -86,6 +86,18 @@ describe('Utils', function() {
     }
   });
 
+  it('#getColorCounts returns a map of color to color count', function() {
+    var utils = new Utils(seeds[0], wordBank);
+
+    var expectedMap = {};
+    expectedMap[Color.BLACK] = 1;
+    expectedMap[Color.BLUE] = 9;
+    expectedMap[Color.RED] = 8;
+    expectedMap[Color.YELLOW] = 7;
+
+    assert.deepEqual(utils.getColorCounts(GAME_WORD_COUNT, BLACK_WORD_COUNT), expectedMap);
+  });
+
   it('#getColors returns random colors', function() {
     var utils = new Utils(seeds[0], wordBank);
     var expectedColors = [
@@ -122,17 +134,6 @@ describe('Utils', function() {
     for (var i = 0; i < seeds.length; i++) {
       var utils = new Utils(seeds[i], wordBank);
 
-      var expectedBlackWordCount = BLACK_WORD_COUNT;
-      var expectedBlueWordCount = parseInt((GAME_WORD_COUNT - BLACK_WORD_COUNT) / 3);
-      var expectedRedWordCount = expectedBlueWordCount;
-      if (utils.getFirstTurnColor() === Color.BLUE) {
-        expectedBlueWordCount++;
-      } else {
-        expectedRedWordCount++;
-      }
-      var expectedYellowWordCount =
-        GAME_WORD_COUNT - expectedBlackWordCount - expectedBlueWordCount - expectedRedWordCount;
-
       var colors = utils.getColors(GAME_WORD_COUNT, BLACK_WORD_COUNT);
       var actualBlackWordCount = 0;
       var actualBlueWordCount = 0;
@@ -156,10 +157,11 @@ describe('Utils', function() {
         }
       }
 
-      assert.equal(actualBlackWordCount, expectedBlackWordCount);
-      assert.equal(actualBlueWordCount, expectedBlueWordCount);
-      assert.equal(actualRedWordCount, expectedRedWordCount);
-      assert.equal(actualYellowWordCount, expectedYellowWordCount);
+      var expectedColorCounts = utils.getColorCounts(GAME_WORD_COUNT, BLACK_WORD_COUNT);
+      assert.equal(actualBlackWordCount, expectedColorCounts[Color.BLACK]);
+      assert.equal(actualBlueWordCount, expectedColorCounts[Color.BLUE]);
+      assert.equal(actualRedWordCount, expectedColorCounts[Color.RED]);
+      assert.equal(actualYellowWordCount, expectedColorCounts[Color.YELLOW]);
     }
   });
 
