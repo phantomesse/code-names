@@ -5,6 +5,8 @@ var BLACK_WORD_COUNT = require('../js/variables').BLACK_WORD_COUNT;
 var Color = require('../js/variables').Color;
 var Utils = require('../js/utils');
 
+var EPSILON = 0.0000000001;
+
 describe('Utils', function() {
   var seeds;
   var wordBank;
@@ -22,7 +24,10 @@ describe('Utils', function() {
 
   it('#getRandomNumber returns a random number', function() {
     var utils = new Utils(seeds[0], wordBank);
-    assert.equal(utils.getRandomNumber(''), 0.6122790858798908);
+    var expected = 0.6122790858798908;
+    var actual = utils.getRandomNumber('');
+    var delta = Math.abs(actual - expected);
+    assert.strictEqual(delta < EPSILON, true, `${actual} was not within ${EPSILON} of expected value ${expected}`);
   });
 
   it('#getRandomNumber returns the same random number for the same seed', function() {

@@ -1,31 +1,32 @@
 var Game = function(words, colors, firstTurnColor, colorCounts) {
-  this.words = words;
-  this.colors = colors;
-  this.firstTurnColor = firstTurnColor;
+  var self = this;
+  self.words = words;
+  self.colors = colors;
+  self.firstTurnColor = firstTurnColor;
 
-  this.cards = [];
-  this.view = View.NORMAL;
+  self.cards = [];
+  self.view = View.NORMAL;
 
   // Set who goes first.
   $('.turn').text(firstTurnColor + ' goes first');
 
-  this.blueWordsLeft = colorCounts[Color.BLUE];
-  this.redWordsLeft = colorCounts[Color.RED];
-  this.updateScore();
+  self.blueWordsLeft = colorCounts[Color.BLUE];
+  self.redWordsLeft = colorCounts[Color.RED];
+  self.updateScore();
 
   // Create cards.
   var iterator = this.words.values();
   for (var i = 0; i < this.words.size; i++) {
     var card = new Card(iterator.next().value, colors[i]);
-    this.cards.push(card);
+    self.cards.push(card);
     card.render();
     card.element.on('update-score', function(event, color) {
       if (color === Color.RED) {
-        this.redWordsLeft--;
+        self.redWordsLeft--;
       } else if (color === Color.BLUE) {
-        this.blueWordsLeft--;
+        self.blueWordsLeft--;
       }
-      this.updateScore();
+      self.updateScore();
     });
   }
 }
