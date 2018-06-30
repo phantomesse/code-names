@@ -15,7 +15,7 @@ Card.prototype.render = function() {
       $(this).addClass('active');
 
       if (self.color === Color.RED || self.color === Color.BLUE) {
-        $(this).trigger('update-score', [self.color]);
+        $(this).trigger('update-score', self.color);
       }
     })
     .keydown(function(event) {
