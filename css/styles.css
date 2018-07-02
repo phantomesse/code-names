@@ -141,3 +141,28 @@ footer {
 .score.blue {
   background: var(--card-blue-bg-color);
 }
+
+.modal {
+  background: rgba(0,0,0,0.4);
+  display: none;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.modal-content {
+  align-items: center;
+  background: var(--card-bg-color);
+  border: var(--unit) transparent solid;
+  border-radius: var(--unit);
+  box-sizing: border-box;
+  color: var(--fg-color);
+  font-size: calc(var(--unit) * 5);
+  font-weight: 500;
+  margin: 20% auto;
+  justify-content: center;
+  padding: calc(var(--unit) * 2);
+  width: 20%;
+}
+

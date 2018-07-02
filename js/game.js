@@ -3,6 +3,7 @@ var Game = function(words, colors, firstTurnColor, colorCounts) {
   self.words = words;
   self.colors = colors;
   self.firstTurnColor = firstTurnColor;
+  self.colorCounts = colorCounts;
 
   self.cards = [];
   self.view = View.NORMAL;
@@ -10,13 +11,10 @@ var Game = function(words, colors, firstTurnColor, colorCounts) {
   // Set who goes first.
   $('.turn').text(firstTurnColor + ' goes first');
 
-  self.blueWordsLeft = colorCounts[Color.BLUE];
-  self.redWordsLeft = colorCounts[Color.RED];
-  self.updateScore();
+  self.initScores();
 
   // Create cards.
-  var self = this;
-  var iterator = this.words.values();
+  var iterator = self.words.values();
   for (var i = 0; i < this.words.size; i++) {
     var card = new Card(iterator.next().value, colors[i]);
     self.cards.push(card);
@@ -30,7 +28,21 @@ var Game = function(words, colors, firstTurnColor, colorCounts) {
       self.updateScore();
     });
   }
+
+  self.dialog = new Dialog(/* onClose */ function() {
+    self.initScores();
+
+    self.cards.forEach(function(card) {
+      card.reset();
+    });
+  });
 }
+
+Game.prototype.initScores = function() {
+  this.blueWordsLeft = this.colorCounts[Color.BLUE];
+  this.redWordsLeft = this.colorCounts[Color.RED];
+  this.updateScore();
+};
 
 /** Toggles between spymaster and normal views. */
 Game.prototype.toggleView = function() {
@@ -59,4 +71,10 @@ Game.prototype.updateScore = function() {
 
   $('.score.red').text(redScoreMessage);
   $('.score.blue').text(blueScoreMessage);
+
+  if (this.redWordsLeft === 0) {
+    this.dialog.showWinner(Color.RED);
+  } else if (this.blueWordsLeft === 0) {
+    this.dialog.showWinner(Color.BLUE);
+  }
 }
