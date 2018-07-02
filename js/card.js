@@ -65,3 +65,8 @@ Card.prototype.render = function() {
       break;
   }
 }
+
+Card.prototype.reset = function() {
+  this.element.removeClass('active');
+};
+
