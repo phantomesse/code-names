@@ -1,5 +1,9 @@
 "use strict";
 
+const DataGenerator = require('./data-generator.js');
+
+const wordCount = 25;
+
 /// Describes a game session in which one game is played from start to finish.
 class GameSession {
   constructor(sessionName) {
@@ -12,6 +16,9 @@ class GameSession {
     ///
     /// When the connection count is 0, this session instance should be destroyed.
     this.connectionCount = 1;
+
+    /// Words in this game session.
+    this.words = DataGenerator.getWords(wordCount);
  }
 }
 

@@ -16,3 +16,5 @@ Frontend scripts are located in public/js.
 Use `$unit` in CSS for calculating dimensions. We use `1rem` as the base unit, so please don't mix in `px`.
 
 Alphabetize all CSS properties.
+
+Use single quotes in JS and CSS. Use double quotes in HTML.

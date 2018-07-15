@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve index.html.
 app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/public/index.html');
+  response.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 // Check if a game session exists based on a given session name.
