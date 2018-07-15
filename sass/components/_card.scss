@@ -1,0 +1,9 @@
+& {
+  @include set-colors($card-colors);
+  @include set-font($card-font);
+  align-items: center;
+  border-radius: $unit / 2;
+  display: flex;
+  justify-content: center;
+  padding: $unit;
+}

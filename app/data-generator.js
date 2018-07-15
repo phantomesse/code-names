@@ -12,7 +12,7 @@ class DataGenerator {
     this.words = JSON.parse(fs.readFileSync(wordsFilePath, 'utf8'));
   }
 
-  /// Retrieves a random set of words.
+  /// Retrieves a random array of words.
   getWords(wordCount) {
     var words = new Set();
 
@@ -21,7 +21,7 @@ class DataGenerator {
       words.add(this.words[index]);
     }
 
-    return words;
+    return Array.from(words);
   }
 }
 

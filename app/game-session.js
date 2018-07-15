@@ -1,6 +1,6 @@
 "use strict";
 
-const DataGenerator = require('./data-generator.js');
+const dataGenerator = require('./data-generator.js');
 
 const wordCount = 25;
 
@@ -17,8 +17,9 @@ class GameSession {
     /// When the connection count is 0, this session instance should be destroyed.
     this.connectionCount = 1;
 
-    /// Words in this game session.
-    this.words = DataGenerator.getWords(wordCount);
+    /// Array of words in this game session.
+    this.words = dataGenerator.getWords(wordCount);
+    
  }
 }
 

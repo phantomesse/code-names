@@ -33,3 +33,18 @@ button {
     @import 'components/session-picker';
   }
 }
+
+.game {
+  align-content: stretch;
+  box-sizing: border-box;
+  display: grid;
+  grid-gap: $unit;
+  grid-template-columns: repeat(5, 1fr);
+  height: 100%;
+  padding: $unit;
+  width: 100%;
+}
+
+.card {
+  @import 'components/card';
+}

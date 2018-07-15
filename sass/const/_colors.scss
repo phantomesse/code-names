@@ -23,6 +23,11 @@ $button-colors: (
   )
 );
 
+$card-colors: (
+  background: lighten(map-get($_theme, bg-color), 10%),
+  color: map-get($_theme, fg-color)
+);
+
 @mixin set-colors($color-map) {
   $properties: ('background', 'color');
   @include set-properties($color-map, $properties);

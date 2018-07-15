@@ -32,6 +32,15 @@ server.get('/game-session-exists', function(request, response) {
   response.send(JSON.stringify({'exists': exists}));
 });
 
+// Get GameSession object for a given session name.
+server.get('/game-session', function(request, response) {
+  var gameSession = app.getGameSession(request.query.sessionName);
+  console.log(request.query.sessionName);
+  console.log(gameSession);
+  response.setHeader('Content-Type', 'application/json');
+  response.send(JSON.stringify(gameSession));
+}); 
+
 // Handle socket.io connections.
 io.on('connection', function(socket) {
   console.log('a user connected');
