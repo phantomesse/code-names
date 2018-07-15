@@ -1,0 +1,13 @@
+$_height: $unit * 2;
+
+& {
+  @include set-colors($button-colors);
+  @include set-font($input-font);
+  border-radius: $_height / 2;
+  border: 0;
+  cursor: pointer;
+  height: $_height;
+  line-height: $_height;
+  outline: none;
+  padding: 0 $unit;
+}

@@ -1,0 +1,7 @@
+@mixin set-properties($map, $properties) {
+  @each $property in $properties {
+    @if map-has-key($map, $property) {
+      #{$property}: map-get($map, $property);
+    }
+  }
+}

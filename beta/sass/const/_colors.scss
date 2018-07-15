@@ -1,0 +1,35 @@
+$_theme: (
+  bg-color: #033649,
+  fg-color: #E8DDCB,
+  accent-color: #036564
+);
+
+$body-colors: (
+  background: map-get($_theme, bg-color),
+  color: map-get($_theme, fg-color)
+);
+
+$input-colors: (
+  background: lighten(map-get($_theme, bg-color), 10%),
+  color: map-get($_theme, fg-color)
+);
+
+$button-colors: (
+  background: map-get($_theme, accent-color),
+  color: map-get($_theme, fg-color),
+
+  hover-state: (
+    background: darken(map-get($_theme, accent-color), 2%)
+  )
+);
+
+@mixin set-colors($color-map) {
+  $properties: ('background', 'color');
+  @include set-properties($color-map, $properties);
+
+  @if map-has-key($color-map, hover-state) {
+    &:hover {
+      @include set-properties(map-get($color-map, hover-state), $properties);
+    }
+  }
+}
