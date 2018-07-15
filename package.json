@@ -7,6 +7,9 @@
     "socket.io": "^2.1.1",
     "node-sass-middleware": "^0.11.0"
   },
+  "scripts": {
+    "start": "node app.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/phantomesse/code-names.git"
