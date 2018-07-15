@@ -10,9 +10,9 @@
   "engines": {
     "node": "6.2.0"
   },
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

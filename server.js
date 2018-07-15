@@ -1,17 +1,14 @@
 const express = require('express');
-const app = express();
-const http = require('http').Server(app);
+const server = express();
+const http = require('http').Server(server);
 const io = require('socket.io')(http);
 const sassMiddleware = require('node-sass-middleware')
 const path = require('path');
-const GameSession = require('./app/game-session.js');
+const app = require('./app/app.js');
 const port = process.env.PORT || 1337; 
 
-/// List of active game sessions.
-var gameSessions = [];
-
 // SASS compilations.
-app.use(sassMiddleware({
+server.use(sassMiddleware({
   debug: true,
   dest: 'public/css',
   force: true, 
@@ -21,27 +18,16 @@ app.use(sassMiddleware({
   sourceMap: true,
   src: 'sass'
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+server.use(express.static(path.join(__dirname, 'public')));
 
 // Serve index.html.
-app.get('/', function(request, response) {
+server.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 // Check if a game session exists based on a given session name.
-app.get('/game-session-exists', function(request, response) {
-  var sessionName = request.query.sessionName;
-  var exists = false;
-
-  if (sessionName != undefined) {
-    for (var i = 0; i < gameSessions.length; i++) {
-      if (gameSessions[i].sessionName === sessionName) {
-        exists = true;
-        break;
-      }
-    }
-  }
-
+server.get('/game-session-exists', function(request, response) {
+  var exists = app.doesGameSessionExist(request.query.sessionName);
   response.setHeader('Content-Type', 'application/json');
   response.send(JSON.stringify({'exists': exists}));
 });
@@ -55,10 +41,7 @@ io.on('connection', function(socket) {
   });
 
   socket.on('join session name', function(sessionName) {
-//    io.emit('chat message', msg);
-    var session = new GameSession(sessionName);
-    gameSessions.push(session);
-    console.log(gameSessions);
+    app.joinSession(sessionName);
   });
 });
 
