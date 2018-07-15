@@ -5,7 +5,7 @@ const io = require('socket.io')(http);
 const sassMiddleware = require('node-sass-middleware')
 const path = require('path');
 const GameSession = require('./app/game-session.js');
-const port = 1337;
+const port = process.env.PORT || 1337; 
 
 /// List of active game sessions.
 var gameSessions = [];
