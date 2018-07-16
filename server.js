@@ -52,6 +52,13 @@ io.on('connection', function(socket) {
   socket.on('join session name', function(sessionName) {
     app.joinSession(sessionName);
   });
+
+  socket.on('updated flipped word', function(word, sessionName) {
+    console.log('word: ' + word + '  session name: ' + sessionName);
+    app.updateFlippedWord(word, sessionName);
+
+    socket.broadcast.emit('updated flipped word', word, sessionName);
+  });
 });
 
 // Start up server.

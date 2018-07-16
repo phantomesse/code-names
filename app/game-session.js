@@ -20,6 +20,9 @@ class GameSession {
     /// Array of words in this game session.
     this.words = dataGenerator.getWords(wordCount);
 
+    /// Array of words that have been flipped.
+    this.flippedWords = [];
+
     /// Which team goes first (CardType.RED or CardType.BLUE).
     this.startingTeam = dataGenerator.getStartingTeam();
     

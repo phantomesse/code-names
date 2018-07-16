@@ -2,17 +2,36 @@
 
 /// Describes a card.
 class Card {
-  constructor(word, type) {
+  constructor(sessionName, word, type, isFlipped) {
+    this.sessionName = sessionName;
     this.word = word;
     this.type = type;
-    this.element = this._createElement();
+    this.element = this._createElement(isFlipped);
   }
 
-  _createElement() {
+  _createElement(isFlipped) {
     var element = $('<div>')
         .addClass('card')
         .text(this.word)
         .appendTo('.game');
+
+    if (isFlipped) {
+      element.addClass('flipped');
+    }
+
+    var self = this;
+    element.click(function() {
+      console.log('hi');
+      var data = {'word': self.word, 'sessionName': self.sessionName};
+      socket.emit('updated flipped word', self.word, self.sessionName);
+      element.addClass('flipped');
+    });
+
+    socket.on('updated flipped word', function(word, sessionName) {
+      if (sessionName === self.sessionName && word === self.word) {
+        element.addClass('flipped');
+      }
+    });
     return element;
   }
 }

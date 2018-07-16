@@ -21,7 +21,8 @@ class GameView {
   _generateCards(data) {
     $('.game').empty();
     for (var i = 0; i < data.words.length; i++) {
-      this.cards.push(new Card(data.words[i], data.cardTypes[i]));
+      var isFlipped = data.flippedWords.includes(data.words[i]);
+      this.cards.push(new Card(this.sessionName, data.words[i], data.cardTypes[i], isFlipped));
     }
   }
 }
