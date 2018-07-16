@@ -19,7 +19,12 @@ class GameSession {
 
     /// Array of words in this game session.
     this.words = dataGenerator.getWords(wordCount);
+
+    /// Which team goes first (CardType.RED or CardType.BLUE).
+    this.startingTeam = dataGenerator.getStartingTeam();
     
+    /// Array of card types in this game session.
+    this.cardTypes = dataGenerator.getCardTypes(wordCount, this.startingTeam);
  }
 }
 
