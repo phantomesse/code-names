@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/phantomesse/code-names.svg?branch=master)](https://travis-ci.org/phantomesse/code-names)
+
 # Development
 Runs on NodeJS using Socket.IO.
 
