@@ -4,30 +4,36 @@ const dataGenerator = require('./data-generator.js');
 
 const wordCount = 25;
 
-/// Describes a game session in which one game is played from start to finish.
+/**
+ * Describes a game session in which one game is played from start to finish.
+ */
 class GameSession {
   constructor(sessionName) {
-    /// Key for other players to log into this game.
-    ///
-    /// The session name must be a string.
+    /**
+     * Key for other players to log into this game.
+     *
+     * The session name must be a string.
+     */
     this.sessionName = sessionName;
 
-    /// Number of connections attached to this game session.
-    ///
-    /// When the connection count is 0, this session instance should be
-    /// destroyed.
+    /**
+     * Number of connections attached to this game session.
+     *
+     * When the connection count is 0, this session instance should be
+     * destroyed.
+     */
     this.connectionCount = 1;
 
-    /// Array of words in this game session.
+    /** Array of words in this game session. */
     this.words = dataGenerator.getWords(wordCount);
 
-    /// Array of words that have been flipped.
+    /** Array of words that have been flipped. */
     this.flippedWords = [];
 
-    /// Which team goes first (CardType.RED or CardType.BLUE).
+    /** Which team goes first (CardType.RED or CardType.BLUE). */
     this.startingTeam = dataGenerator.getStartingTeam();
 
-    /// Array of card types in this game session.
+    /** Array of card types in this game session. */
     this.cardTypes = dataGenerator.getCardTypes(wordCount, this.startingTeam);
   }
 }
