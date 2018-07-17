@@ -21,12 +21,20 @@ class Card {
 
   _createElement() {
     var self = this;
-    var element = $('<button>')
+    return $('<button>')
       .addClass('card')
       .text(this.word)
       .click(() => self._flipCard(true))
+      //.keydown(event => self._moveFocus(event))
       .appendTo('.game');
-    return element;
+  }
+
+  _flipCard(shouldEmitEvent) {
+    if (shouldEmitEvent) {
+      socket.emit('updated flipped word', this.word, this.sessionName);
+    }
+
+    this.element.addClass('flipped ' + this.type);
   }
 
   _flipCard(shouldEmitEvent) {

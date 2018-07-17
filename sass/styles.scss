@@ -1,6 +1,6 @@
+@import 'const/dimensions';
 @import 'const/mixins';
 @import 'const/colors';
-@import 'const/dimensions';
 @import 'const/fonts';
 
 html,
@@ -14,12 +14,25 @@ body {
   width: 100%;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 input[type=text] {
   @import 'components/input';
 }
 
 button:not(.card) {
   @import 'components/button';
+}
+
+header {
+  @import 'components/header';
+}
+
+footer {
+  @import 'components/footer';
 }
 
 .init {
