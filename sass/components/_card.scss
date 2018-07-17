@@ -3,11 +3,17 @@
   @include set-font($card-font);
   align-items: center;
   border-radius: $unit / 2;
+  border-style: solid;
+  border-width: $unit / 2;
+  cursor: pointer;
   display: flex;
   justify-content: center;
+  outline: none;
   padding: $unit;
+  transition: all 0.1s linear 0s;
 }
 
 &.flipped {
-  background: hotpink;
+  @include set-colors($card-neutral-colors);
+  pointer-events: none;
 }

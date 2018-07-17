@@ -1,7 +1,18 @@
+$transition: .1s linear 0s;
+
 @mixin set-properties($map, $properties) {
   @each $property in $properties {
     @if map-has-key($map, $property) {
       #{$property}: map-get($map, $property);
+    }
+  }
+
+  $states: ('hover', 'focus');
+  @each $state in $states {
+    @if map-has-key($map, #{$state}-state) {
+      &:#{$state} {
+        @include set-properties(map-get($map, #{$state}-state), $properties);
+      }
     }
   }
 }
