@@ -48,6 +48,11 @@ $card-colors: (
 
 $card-red-colors: (
   background: map-get($_theme, card-red-color),
+  color: lighten(map-get($_theme, card-red-color), 30%),
+
+  hover-state: (
+    border-color: transparent
+  ),
 
   focus-state: (
     border-color: transparent
@@ -56,6 +61,11 @@ $card-red-colors: (
 
 $card-blue-colors: (
   background: map-get($_theme, card-blue-color),
+  color: lighten(map-get($_theme, card-blue-color), 30%),
+
+  hover-state: (
+    border-color: transparent
+  ),
 
   focus-state: (
     border-color: transparent
@@ -64,6 +74,11 @@ $card-blue-colors: (
 
 $card-death-colors: (
   background: map-get($_theme, card-death-color),
+  color: lighten(map-get($_theme, card-death-color), 30%),
+
+  hover-state: (
+    border-color: transparent
+  ),
 
   focus-state: (
     border-color: transparent
@@ -72,6 +87,11 @@ $card-death-colors: (
 
 $card-neutral-colors: (
   background: map-get($_theme, card-neutral-color),
+  color: lighten(map-get($_theme, card-neutral-color), 30%),
+
+  hover-state: (
+    border-color: transparent
+  ),
 
   focus-state: (
     border-color: transparent
