@@ -34,6 +34,7 @@ class App {
 
   /// Update flipped word.
   updateFlippedWord(word, sessionName) {
+    if (sessionName === undefined) return;
     this.getGameSession(sessionName).flippedWords.push(word);
   }
 }
