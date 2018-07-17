@@ -13,6 +13,16 @@ class GameView {
     var self = this;
     GameView._getGameSessionData(sessionName).done(function(data) {
       self._generateCards(data);
+
+      // Set starting team.
+      var startingTeam = data.startingTeam;
+      startingTeam = startingTeam.charAt(0).toUpperCase() + startingTeam.substr(
+        1) + ' team';
+      $('.starting-team').addClass(data.startingTeam).text(startingTeam);
+
+      // Show footer.
+      $('footer').removeClass('hidden');
+
     });
   }
 

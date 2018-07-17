@@ -1,4 +1,9 @@
+$box-shadow: 0 0 $unit * 4 rgba(0, 0, 0, 0.6);
 $transition: .1s linear 0s;
+
+@mixin box-shadow($size, $opacity) {
+  box-shadow: 0 0 $size rgba(0, 0, 0, $opacity);
+}
 
 @mixin set-properties($map, $properties) {
   @each $property in $properties {

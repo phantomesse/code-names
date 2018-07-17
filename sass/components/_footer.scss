@@ -1,0 +1,28 @@
+& {
+  $height: $unit * 2;
+  @include set-colors($header-colors);
+  @include box-shadow($unit, .2);
+  border-top: 1px rgba(0, 0, 0, 0.1) solid;
+  display: flex;
+  align-items: center;
+  height: $unit * 4;
+  padding: 0 $unit * 2;
+  transition: height $transition;
+
+  &.hidden {
+    overflow: hidden;
+    height: 0;
+  }
+}
+
+.starting-team {
+  font-weight: 700;
+
+  &.red {
+    color: map-get($card-red-colors, background);
+  }
+
+  &.blue {
+    color: map-get($card-blue-colors, background);
+  }
+}
