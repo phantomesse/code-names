@@ -36,6 +36,14 @@ class Card {
 
     this.element.addClass('flipped ' + this.type);
   }
+
+  _flipCard(shouldEmitEvent) {
+    if (shouldEmitEvent) {
+      socket.emit('updated flipped word', this.word, this.sessionName);
+    }
+
+    this.element.addClass('flipped ' + this.type);
+  }
 }
 
 const CardType = Object.freeze({
