@@ -8,10 +8,7 @@ class ViewController {
 
     this._setView();
     var self = this;
-    window.onpopstate = function() {
-      console.log('hi');
-      self._setView();
-    }
+    window.onpopstate = () => self._setView();
   }
 
   _setView() {

@@ -5,13 +5,13 @@ const io = require('socket.io')(http);
 const sassMiddleware = require('node-sass-middleware')
 const path = require('path');
 const app = require('./app/app.js');
-const port = process.env.PORT || 1337; 
+const port = process.env.PORT || 1337;
 
 // SASS compilations.
 server.use(sassMiddleware({
   debug: true,
   dest: 'public/css',
-  force: true, 
+  force: true,
   outputStyle: 'compressed',
   prefix: '/css',
   root: __dirname,
@@ -29,17 +29,17 @@ server.get('/', function(request, response) {
 server.get('/game-session-exists', function(request, response) {
   var exists = app.doesGameSessionExist(request.query.sessionName);
   response.setHeader('Content-Type', 'application/json');
-  response.send(JSON.stringify({'exists': exists}));
+  response.send(JSON.stringify({
+    'exists': exists
+  }));
 });
 
 // Get GameSession object for a given session name.
 server.get('/game-session', function(request, response) {
   var gameSession = app.getGameSession(request.query.sessionName);
-  console.log(request.query.sessionName);
-  console.log(gameSession);
   response.setHeader('Content-Type', 'application/json');
   response.send(JSON.stringify(gameSession));
-}); 
+});
 
 // Handle socket.io connections.
 io.on('connection', function(socket) {
@@ -54,14 +54,12 @@ io.on('connection', function(socket) {
   });
 
   socket.on('updated flipped word', function(word, sessionName) {
-    console.log('word: ' + word + '  session name: ' + sessionName);
     app.updateFlippedWord(word, sessionName);
-
     socket.broadcast.emit('updated flipped word', word, sessionName);
   });
 });
 
 // Start up server.
-http.listen(port, function(){
+http.listen(port, function() {
   console.log(`listening on localhost:${port}`);
 });

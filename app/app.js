@@ -5,8 +5,8 @@ const GameSession = require('./game-session.js');
 /// Holds all global data and functions for app.
 class App {
   constructor() {
-    /// Map of all game sessions where the key is the session name and the value is the GameSession
-    /// object.
+    /// Map of all game sessions where the key is the session name and the value
+    /// is the GameSession object.
     this._gameSessions = new Map();
   }
 
@@ -16,14 +16,14 @@ class App {
     return this._gameSessions.has(sessionName);
   }
 
-  /// Joins an existing game session if it exists or creates a new session if it doesn't exist.
+  /// Joins an existing game session if it exists or creates a new session if it
+  /// doesn't exist.
   joinSession(sessionName) {
     if (this.doesGameSessionExist(sessionName)) {
       console.log('game session exists!');
     } else {
       console.log('creating a new game session');
       this._gameSessions.set(sessionName, new GameSession(sessionName));
-      console.log(this._gameSessions);
     }
   }
 

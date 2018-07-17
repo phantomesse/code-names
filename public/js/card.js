@@ -11,18 +11,18 @@ class Card {
 
   _createElement(isFlipped) {
     var element = $('<div>')
-        .addClass('card')
-        .text(this.word)
-        .appendTo('.game');
+      .addClass('card')
+      .text(this.word)
+      .appendTo('.game');
 
-    if (isFlipped) {
-      element.addClass('flipped');
-    }
+    if (isFlipped) element.addClass('flipped');
 
     var self = this;
     element.click(function() {
-      console.log('hi');
-      var data = {'word': self.word, 'sessionName': self.sessionName};
+      var data = {
+        'word': self.word,
+        'sessionName': self.sessionName
+      };
       socket.emit('updated flipped word', self.word, self.sessionName);
       element.addClass('flipped');
     });
