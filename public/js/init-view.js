@@ -17,12 +17,11 @@ class InitView {
 
     sessionPickerInput.keyup(function() {
       var sessionName = sessionPickerInput.val();
-      $.get('/game-session-exists', {'sessionName' : sessionName}, function(response) {
-        if (response.exists) {
-          sessionPickerButton.text('join session');
-        } else {
-          sessionPickerButton.text('create session');
-        }
+      $.get('/game-session-exists', {
+        'sessionName': sessionName
+      }, function(response) {
+        if (response.exists) sessionPickerButton.text('join session');
+        else sessionPickerButton.text('create session');
       });
     });
   }

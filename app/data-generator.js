@@ -36,16 +36,20 @@ class DataGenerator {
     var deathCardCount = DEATH_CARD_COUNT;
     var startingTeamCardCount = parseInt(typeCount / 3) + 1;
     var secondTeamCardCount = startingTeamCardCount - 1;
-    var neutralCardCount = typeCount - deathCardCount - startingTeamCardCount - secondTeamCardCount;
+    var neutralCardCount = typeCount - deathCardCount - startingTeamCardCount -
+      secondTeamCardCount;
 
     var cardTypes = new Array(typeCount);
-    cardTypes = DataGenerator._setCardTypes(cardTypes, CardType.DEATH, deathCardCount);
-    cardTypes = DataGenerator._setCardTypes(cardTypes, startingTeam, startingTeamCardCount);
+    cardTypes = DataGenerator._setCardTypes(cardTypes, CardType.DEATH,
+      deathCardCount);
+    cardTypes = DataGenerator._setCardTypes(cardTypes, startingTeam,
+      startingTeamCardCount);
     cardTypes = DataGenerator._setCardTypes(
-        cardTypes,
-        startingTeam === CardType.RED ? CardType.BLUE : CardType.RED,
-        secondTeamCardCount);
-    cardTypes = DataGenerator._setCardTypes(cardTypes, CardType.NEUTRAL, neutralCardCount);
+      cardTypes,
+      startingTeam === CardType.RED ? CardType.BLUE : CardType.RED,
+      secondTeamCardCount);
+    cardTypes = DataGenerator._setCardTypes(cardTypes, CardType.NEUTRAL,
+      neutralCardCount);
 
     return cardTypes;
   }

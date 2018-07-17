@@ -14,7 +14,8 @@ class GameSession {
 
     /// Number of connections attached to this game session.
     ///
-    /// When the connection count is 0, this session instance should be destroyed.
+    /// When the connection count is 0, this session instance should be
+    /// destroyed.
     this.connectionCount = 1;
 
     /// Array of words in this game session.
@@ -25,10 +26,10 @@ class GameSession {
 
     /// Which team goes first (CardType.RED or CardType.BLUE).
     this.startingTeam = dataGenerator.getStartingTeam();
-    
+
     /// Array of card types in this game session.
     this.cardTypes = dataGenerator.getCardTypes(wordCount, this.startingTeam);
- }
+  }
 }
 
 module.exports = GameSession;
