@@ -10,7 +10,7 @@ class Card {
   }
 
   _createElement(isFlipped) {
-    var element = $('<div>')
+    var element = $('<button>')
       .addClass('card')
       .text(this.word)
       .appendTo('.game');

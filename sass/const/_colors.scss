@@ -1,7 +1,8 @@
 $_theme: (
   bg-color: #033649,
   fg-color: #E8DDCB,
-  accent-color: #036564
+  accent-color: #036564,
+  card-neutral-color: #6298AC
 );
 
 $body-colors: (
@@ -25,16 +26,23 @@ $button-colors: (
 
 $card-colors: (
   background: lighten(map-get($_theme, bg-color), 10%),
-  color: map-get($_theme, fg-color)
+  color: map-get($_theme, fg-color),
+  border-color: transparent,
+
+  hover-state: (
+    border-color: lighten(map-get($_theme, bg-color), 5%)
+  ),
+
+  focus-state: (
+    border-color: lighten(map-get($_theme, bg-color), 2%)
+  )
+);
+
+$card-neutral-colors: (
+  background: map-get($_theme, card-neutral-color)
 );
 
 @mixin set-colors($color-map) {
-  $properties: ('background', 'color');
+  $properties: ('background', 'color', 'border-color');
   @include set-properties($color-map, $properties);
-
-  @if map-has-key($color-map, hover-state) {
-    &:hover {
-      @include set-properties(map-get($color-map, hover-state), $properties);
-    }
-  }
 }
