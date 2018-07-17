@@ -1,8 +1,11 @@
 $_theme: (
-  bg-color: #033649,
-  fg-color: #E8DDCB,
-  accent-color: #036564,
-  card-neutral-color: #6298AC
+  bg-color: #34495e,
+  fg-color: #ecf0f1,
+  accent-color: #16a085,
+  card-red-color: #E74C3C,
+  card-blue-color: #3498DB,
+  card-death-color: #2C3E50,
+  card-neutral-color: #f39c12
 );
 
 $body-colors: (
@@ -38,8 +41,36 @@ $card-colors: (
   )
 );
 
+$card-red-colors: (
+  background: map-get($_theme, card-red-color),
+
+  focus-state: (
+    border-color: transparent
+  )
+);
+
+$card-blue-colors: (
+  background: map-get($_theme, card-blue-color),
+
+  focus-state: (
+    border-color: transparent
+  )
+);
+
+$card-death-colors: (
+  background: map-get($_theme, card-death-color),
+
+  focus-state: (
+    border-color: transparent
+  )
+);
+
 $card-neutral-colors: (
-  background: map-get($_theme, card-neutral-color)
+  background: map-get($_theme, card-neutral-color),
+
+  focus-state: (
+    border-color: transparent
+  )
 );
 
 @mixin set-colors($color-map) {

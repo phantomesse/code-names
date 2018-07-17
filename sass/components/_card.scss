@@ -17,3 +17,19 @@
   @include set-colors($card-neutral-colors);
   pointer-events: none;
 }
+
+&.red {
+  @include set-colors($card-red-colors);
+}
+
+&.blue {
+  @include set-colors($card-blue-colors);
+}
+
+&.death {
+  @include set-colors($card-death-colors);
+}
+
+&.neutral {
+  @include set-colors($card-neutral-colors);
+}
