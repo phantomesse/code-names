@@ -26,3 +26,22 @@
     color: map-get($card-blue-colors, background);
   }
 }
+
+.words-left {
+  $height: $unit * 2;
+  align-items: center;
+  border-radius: $height / 2;
+  display: flex;
+  height: $height;
+  padding: 0 $unit;
+
+  &.red {
+    @include set-colors($card-red-colors);
+    margin-left: auto;
+    margin-right: $unit;
+  }
+
+  &.blue {
+    @include set-colors($card-blue-colors);
+  }
+}

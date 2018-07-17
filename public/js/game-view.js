@@ -22,7 +22,6 @@ class GameView {
 
       // Show footer.
       $('footer').removeClass('hidden');
-
     });
   }
 
