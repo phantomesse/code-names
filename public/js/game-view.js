@@ -8,17 +8,22 @@ const _WORD_COUNT = _ROW_COUNT * _COLUMN_COUNT;
 class GameView {
   constructor(sessionName) {
     this.sessionName = sessionName;
-    this.cards = [];
+    this.cardElements = [];
 
     var self = this;
-    GameView._getGameSessionData(sessionName).done(function(data) {
-      self._generateCards(data);
+    GameView._getGameSessionData(sessionName).done(function(response) {
+      // Create card elements.
+      for (var key in response.cards) {
+        self.cardElements.push(
+          new Card(self.sessionName, response.cards[key]));
+      }
 
       // Set starting team.
-      var startingTeam = data.startingTeam;
+      /*var startingTeam = self.data.startingTeam;
       startingTeam = startingTeam.charAt(0).toUpperCase() + startingTeam.substr(
         1) + ' team';
-      $('.starting-team').addClass(data.startingTeam).text(startingTeam);
+      $('.starting-team').addClass(self.data.startingTeam).text(
+        startingTeam);*/
 
       // Show footer.
       $('footer').removeClass('hidden');

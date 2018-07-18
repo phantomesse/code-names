@@ -7,7 +7,7 @@ const path = require('path');
 const app = require('./app/app.js');
 const port = process.env.PORT || 1337;
 
-// SASS compilations.
+/** SASS compilations. */
 server.use(sassMiddleware({
   debug: true,
   dest: 'public/css',
@@ -20,46 +20,60 @@ server.use(sassMiddleware({
 }));
 server.use(express.static(path.join(__dirname, 'public')));
 
-// Serve index.html.
+/** Serve index.html. */
 server.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-// Check if a game session exists based on a given session name.
+/** Check if a game session exists based on a given session name. */
 server.get('/game-session-exists', function(request, response) {
-  var exists = app.doesGameSessionExist(request.query.sessionName);
   response.setHeader('Content-Type', 'application/json');
   response.send(JSON.stringify({
-    'exists': exists
+    'exists': app.doesGameSessionExist(request.query.sessionName)
   }));
 });
 
-// Get GameSession object for a given session name.
+/**
+ * Get GameSession object for a given session name.
+ *
+ * If the GameSession does not already exist, create one.
+ */
 server.get('/game-session', function(request, response) {
-  var gameSession = app.getGameSession(request.query.sessionName);
   response.setHeader('Content-Type', 'application/json');
+
+  // Get the session name from the request.
+  const sessionName = request.query.sessionName;
+
+  // Return an error if the session name is invalid.
+  if (sessionName === undefined) {
+    response.send(JSON.stringify({
+      error: 'session name is undefined'
+    }));
+  }
+
+  // Create session if it doesn't exist.
+  const gameSession = app.createGameSession(sessionName);
+
+  // Return GameSession as a JSON.
   response.send(JSON.stringify(gameSession));
 });
 
-// Handle socket.io connections.
+/** Handle socket.io connections. */
 io.on('connection', function(socket) {
-  console.log('a user connected');
+  //console.log('a user connected');
 
   socket.on('disconnect', function() {
-    console.log('user disconnected');
+    //console.log('user disconnected');
   });
 
-  socket.on('join session name', function(sessionName) {
-    app.joinSession(sessionName);
-  });
-
-  socket.on('updated flipped word', function(word, sessionName) {
-    app.updateFlippedWord(word, sessionName);
-    socket.broadcast.emit('updated flipped word', word, sessionName);
+  socket.on('flip word', function(word, sessionName) {
+    console.log(`flipped word (${word}) in session (${sessionName})`);
+    app.flipWord(word, sessionName);
+    socket.broadcast.emit('flip word', word, sessionName);
   });
 });
 
-// Start up server.
+/** Start up server. */
 http.listen(port, function() {
   console.log(`listening on localhost:${port}`);
 });

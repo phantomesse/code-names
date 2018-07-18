@@ -2,18 +2,16 @@
 
 /// Describes a card.
 class Card {
-  constructor(sessionName, word, type, isFlipped) {
+  constructor(sessionName, data) {
     this.sessionName = sessionName;
-    this.word = word;
-    this.type = type;
-    this.isFlipped = isFlipped;
+    this.data = data;
     this.element = this._createElement();
 
-    if (this.isFlipped) this._flipCard(false);
+    if (this.data.isFlipped) this._flipCard(false);
 
     var self = this;
-    socket.on('updated flipped word', function(word, sessionName) {
-      if (sessionName === self.sessionName && word === self.word) {
+    socket.on(`flip word`, function(word, sessionName) {
+      if (sessionName === self.sessionName && word === self.data.word) {
         self._flipCard(false);
       }
     });
@@ -23,32 +21,15 @@ class Card {
     var self = this;
     return $('<button>')
       .addClass('card')
-      .text(this.word)
+      .text(this.data.word)
       .click(() => self._flipCard(true))
-      //.keydown(event => self._moveFocus(event))
       .appendTo('.game');
   }
 
   _flipCard(shouldEmitEvent) {
     if (shouldEmitEvent) {
-      socket.emit('updated flipped word', this.word, this.sessionName);
+      socket.emit('flip word', this.data.word, this.sessionName);
     }
-
-    this.element.addClass('flipped ' + this.type);
-  }
-
-  _flipCard(shouldEmitEvent) {
-    if (shouldEmitEvent) {
-      socket.emit('updated flipped word', this.word, this.sessionName);
-    }
-
-    this.element.addClass('flipped ' + this.type);
+    this.element.addClass('flipped ' + this.data.cardType);
   }
 }
-
-const CardType = Object.freeze({
-  RED: Symbol('red'),
-  BLUE: Symbol('blue'),
-  NEUTRAL: Symbol('neutral'),
-  DEATH: Symbol('death')
-});
