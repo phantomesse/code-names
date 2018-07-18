@@ -15,7 +15,6 @@ class InitView {
 
     sessionPickerButton.click(function() {
       var sessionName = sessionPickerInput.val();
-      socket.emit('join session name', sessionName);
       history.pushState(null, null, '?session=' + sessionName);
       viewController.showGameView(sessionName);
     });

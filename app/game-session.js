@@ -24,17 +24,38 @@ class GameSession {
      */
     this.connectionCount = 1;
 
-    /** Array of words in this game session. */
-    this.words = dataGenerator.getWords(wordCount);
-
-    /** Array of words that have been flipped. */
-    this.flippedWords = [];
-
     /** Which team goes first (CardType.RED or CardType.BLUE). */
     this.startingTeam = dataGenerator.getStartingTeam();
 
-    /** Array of card types in this game session. */
-    this.cardTypes = dataGenerator.getCardTypes(wordCount, this.startingTeam);
+    /** Map of word to card in this game. */
+    this.cards = GameSession.generateCards(wordCount, this.startingTeam);
+  }
+
+  flipWord(word) {
+    this.cards[word].isFlipped = true;
+  }
+
+  static generateCards(wordCount, startingTeam) {
+    const words = dataGenerator.getWords(wordCount);
+    const cardTypes = dataGenerator.getCardTypes(wordCount, startingTeam);
+
+    var cards = {};
+    for (var i = 0; i < wordCount; i++) {
+      const word = words[i];
+      cards[word] = new _Card(word, cardTypes[i]);
+    }
+    return cards;
+  }
+}
+
+/**
+ * Data structure for a card.
+ */
+class _Card {
+  constructor(word, cardType) {
+    this.word = word;
+    this.cardType = cardType;
+    this.isFlipped = false;
   }
 }
 
