@@ -1,7 +1,11 @@
 & {
   @include set-colors($header-colors);
   @include box-shadow($unit * 4, .6);
-  padding: $unit $unit * 2;
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: $header-height;
+  padding: 0 $unit * 2;
 }
 
 h1 {
