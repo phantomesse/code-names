@@ -19,11 +19,12 @@ class GameView {
       }
 
       // Set starting team.
-      /*var startingTeam = self.data.startingTeam;
-      startingTeam = startingTeam.charAt(0).toUpperCase() + startingTeam.substr(
-        1) + ' team';
-      $('.starting-team').addClass(self.data.startingTeam).text(
-        startingTeam);*/
+      var startingTeam = response.startingTeam;
+      startingTeam = startingTeam.charAt(0).toUpperCase() +
+        startingTeam.substr(1) + ' team';
+      $('.starting-team')
+        .addClass(response.startingTeam)
+        .text(startingTeam);
 
       // Show footer.
       $('footer').removeClass('hidden');
