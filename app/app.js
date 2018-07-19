@@ -34,11 +34,6 @@ class App {
   getGameSession(sessionName) {
     return this._gameSessions.get(sessionName);
   }
-
-  /** Update flipped word. */
-  flipWord(word, sessionName) {
-    this.getGameSession(sessionName).flipWord(word);
-  }
 }
 
 module.exports = new App();

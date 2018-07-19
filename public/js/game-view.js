@@ -15,8 +15,8 @@ class GameView {
       // Create card elements.
       for (var key in response.cards) {
         self.cardElements.push(
-          new Card(self.sessionName, response.cards[key]));
-      }
+          new Card(self, self.sessionName, response.cards[key]));
+      };
 
       // Set starting team.
       var startingTeam = response.startingTeam;
@@ -28,6 +28,8 @@ class GameView {
 
       // Show footer.
       $('footer').removeClass('hidden');
+
+      self.updateCardsLeft();
     });
   }
 
@@ -39,6 +41,16 @@ class GameView {
     return deferred.promise();
   }
 
+  updateCardsLeft() {
+    $.get('/cards-left', {
+      'sessionName': this.sessionName
+    }, function(response) {
+
+      $('.words-left.red').text((response['red'] || 0) + ' cards left');
+      $('.words-left.blue').text((response['blue'] || 0) + ' cards left');
+    });
+  }
+
   _generateCards(data) {
     $('.game').empty();
 
@@ -46,11 +58,6 @@ class GameView {
     for (var i = 0; i < data.words.length; i++) {
       const word = data.words[i];
       const isFlipped = data.flippedWords.includes(word);
-
-      // Create card component and push to cards array.
-      const card =
-        new Card(this.sessionName, word, data.cardTypes[i], isFlipped);
-      this.cards.push(card);
 
       // Handle moving focus with arrow keys.
       card.element.keydown(function(event) {

@@ -2,7 +2,8 @@
 
 /// Describes a card.
 class Card {
-  constructor(sessionName, data) {
+  constructor(gameView, sessionName, data) {
+    this.gameView = gameView;
     this.sessionName = sessionName;
     this.data = data;
     this.element = this._createElement();
@@ -10,10 +11,10 @@ class Card {
     if (this.data.isFlipped) this._flipCard(false);
 
     var self = this;
-    socket.on(`flip word`, function(word, sessionName) {
-      if (sessionName === self.sessionName && word === self.data.word) {
-        self._flipCard(false);
-      }
+    socket.on('flip word', function(word, sessionName) {
+      if (sessionName !== self.sessionName) return;
+      self.gameView.updateCardsLeft();
+      if (word === self.data.word) self._flipCard(false);
     });
   }
 
@@ -29,6 +30,7 @@ class Card {
   _flipCard(shouldEmitEvent) {
     if (shouldEmitEvent) {
       socket.emit('flip word', this.data.word, this.sessionName);
+      this.gameView.updateCardsLeft();
     }
     this.element.addClass('flipped ' + this.data.cardType);
   }

@@ -49,6 +49,7 @@ server.get('/game-session', function(request, response) {
     response.send(JSON.stringify({
       error: 'session name is undefined'
     }));
+    return;
   }
 
   // Create session if it doesn't exist.
@@ -56,6 +57,27 @@ server.get('/game-session', function(request, response) {
 
   // Return GameSession as a JSON.
   response.send(JSON.stringify(gameSession));
+});
+
+/**
+ * Get number of cards left for each team for a given game session.
+ */
+server.get('/cards-left', function(request, response) {
+  response.setHeader('Content-Type', 'application/json');
+
+  // Get the session name from the request.
+  const sessionName = request.query.sessionName;
+
+  // Return an error if the session name is invalid.
+  if (!app.doesGameSessionExist(sessionName)) {
+    response.send(JSON.stringify({
+      error: 'session name does not exist'
+    }));
+    return;
+  }
+
+  // Return cards left as a JSON.
+  response.send(JSON.stringify(app.getGameSession(sessionName).getCardsLeft()));
 });
 
 /** Handle socket.io connections. */
@@ -68,7 +90,7 @@ io.on('connection', function(socket) {
 
   socket.on('flip word', function(word, sessionName) {
     console.log(`flipped word (${word}) in session (${sessionName})`);
-    app.flipWord(word, sessionName);
+    app.getGameSession(sessionName).flipWord(word);
     socket.broadcast.emit('flip word', word, sessionName);
   });
 });

@@ -31,8 +31,28 @@ class GameSession {
     this.cards = GameSession.generateCards(wordCount, this.startingTeam);
   }
 
+  /** Updates a word to flipped. */
   flipWord(word) {
     this.cards[word].isFlipped = true;
+  }
+
+  /**
+   * Returns map of card type to number of unflipped cards in that card type.
+   */
+  getCardsLeft() {
+    var cardsLeft = {};
+
+    for (var key in this.cards) {
+      const card = this.cards[key];
+      const cardType = card.cardType;
+
+      if (card.isFlipped) continue;
+
+      if (cardType in cardsLeft) cardsLeft[cardType]++;
+      else cardsLeft[cardType] = 1;
+    }
+
+    return cardsLeft;
   }
 
   static generateCards(wordCount, startingTeam) {
