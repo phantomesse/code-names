@@ -8,6 +8,9 @@ class InitView {
     // Hide footer.
     $('footer').addClass('hidden');
 
+    // Hide view toggle.
+    $('.view-toggle').hide();
+
     var sessionPickerInput = $('.session-picker input[type=text]');
     var sessionPickerButton = $('.session-picker button');
 

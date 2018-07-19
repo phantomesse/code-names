@@ -12,19 +12,9 @@ class ViewController {
   }
 
   _setView() {
-    var parameters = window.location.search.substr(1).split('&');
-    var hasGameView = false;
-    for (var i = 0; i < parameters.length; i++) {
-      var parameter = parameters[i].split('=');
-      var key = parameter[0];
-      var sessionName = parameter[1];
-      if (key === 'session') {
-        this.showGameView(sessionName);
-        hasGameView = true;
-        break;
-      }
-    }
-    if (!hasGameView) this.showInitView();
+    const parameters = getParameters();
+    if ('session' in parameters) this.showGameView(parameters['session']);
+    else this.showInitView();
   }
 
   showInitView() {

@@ -17,6 +17,10 @@
 &.flipped {
   @include set-colors($card-neutral-colors);
   pointer-events: none;
+
+  &.spymaster {
+    opacity: .2;
+  }
 }
 
 &.red {

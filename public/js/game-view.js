@@ -9,8 +9,16 @@ class GameView {
   constructor(sessionName) {
     this.sessionName = sessionName;
     this.cardElements = [];
+    this.view = _View.TEAM;
 
     var self = this;
+    $('.view-toggle').show().click(function() {
+      self.view = self.view === _View.TEAM ? _View.SPYMASTER : _View.TEAM;
+      history.pushState(null, null,
+        '?session=' + self.sessionName + '&view=' + self.view);
+      self._toggleView();
+    });
+
     GameView._getGameSessionData(sessionName).done(function(response) {
       // Create card elements.
       for (var key in response.cards) {
@@ -30,6 +38,11 @@ class GameView {
       $('footer').removeClass('hidden');
 
       self.updateCardsLeft();
+
+      // Determine which view to show.
+      const parameters = getParameters();
+      if ('view' in parameters) self.view = parameters['view'];
+      self._toggleView();
     });
   }
 
@@ -41,12 +54,30 @@ class GameView {
     return deferred.promise();
   }
 
+  _toggleView() {
+    // Change the text of the view toggle button.
+    switch (this.view) {
+      case _View.TEAM:
+        $('.view-toggle').text('Spymaster View');
+        break;
+      case _View.SPYMASTER:
+        $('.view-toggle').text('Team View');
+    }
+
+    var self = this;
+    this.cardElements.forEach(function(cardElement) {
+      cardElement.setView(self.view);
+    });
+  }
+
   updateCardsLeft() {
     $.get('/cards-left', {
       'sessionName': this.sessionName
     }, function(response) {
-      $('.words-left.red').text((response['red'] || 0) + ' cards left');
-      $('.words-left.blue').text((response['blue'] || 0) + ' cards left');
+      $('.words-left.red').text((response['red'] || 0) +
+        ' cards left');
+      $('.words-left.blue').text((response['blue'] || 0) +
+        ' cards left');
     });
   }
 

@@ -1,5 +1,7 @@
 "use strict";
 
+const _SPYMASTER_CLASS_NAME = 'spymaster';
+
 /// Describes a card.
 class Card {
   constructor(gameView, sessionName, data) {
@@ -18,6 +20,20 @@ class Card {
     });
   }
 
+  setView(view) {
+    switch (view) {
+      case _View.TEAM:
+        this.element.removeClass(_SPYMASTER_CLASS_NAME);
+
+        if (!this.data.isFlipped) this.element.removeClass(this.data.cardType);
+        break;
+      case _View.SPYMASTER:
+        this.element.addClass(_SPYMASTER_CLASS_NAME);
+
+        if (!this.data.isFlipped) this.element.addClass(this.data.cardType);
+    }
+  }
+
   _createElement() {
     var self = this;
     return $('<button>')
@@ -30,6 +46,7 @@ class Card {
   _flipCard(shouldEmitEvent) {
     if (shouldEmitEvent) {
       socket.emit('flip word', this.data.word, this.sessionName);
+      this.data.isFlipped = true;
       this.gameView.updateCardsLeft();
     }
     this.element.addClass('flipped ' + this.data.cardType);
