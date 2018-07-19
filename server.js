@@ -9,7 +9,7 @@ const port = process.env.PORT || 1337;
 
 /** SASS compilations. */
 server.use(sassMiddleware({
-  debug: true,
+  debug: false,
   dest: 'public/css',
   force: true,
   outputStyle: 'compressed',
