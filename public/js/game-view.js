@@ -45,7 +45,6 @@ class GameView {
     $.get('/cards-left', {
       'sessionName': this.sessionName
     }, function(response) {
-
       $('.words-left.red').text((response['red'] || 0) + ' cards left');
       $('.words-left.blue').text((response['blue'] || 0) + ' cards left');
     });
