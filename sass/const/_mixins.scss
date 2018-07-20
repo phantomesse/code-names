@@ -1,7 +1,17 @@
 $transition: .1s linear 0s;
+$border: 1px rgba(0, 0, 0, 0.1) solid;
+$box-shadow: 0 0 $unit rgba(0, 0, 0, .2);
 
-@mixin box-shadow($size, $opacity) {
-  box-shadow: 0 0 $size rgba(0, 0, 0, $opacity);
+/* Shared syling between the header and the footer. */
+@mixin bar {
+  @include set-colors($header-colors);
+  align-items: center;
+  box-shadow: $box-shadow;
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  height: $bar-height;
+  padding: 0 $unit * 2;
 }
 
 @mixin set-properties($map, $properties) {
