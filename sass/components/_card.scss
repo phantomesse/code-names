@@ -1,11 +1,12 @@
 & {
   @include set-colors($card-colors);
   @include set-font($card-font);
-  @include box-shadow($unit, .2);
   align-items: center;
   border-radius: $unit / 2;
   border-style: solid;
   border-width: $unit / 2;
+  box-shadow: $box-shadow;
+  box-sizing: border-box;
   cursor: pointer;
   display: flex;
   justify-content: center;

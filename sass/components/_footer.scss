@@ -1,12 +1,6 @@
 & {
-  @include set-colors($header-colors);
-  @include box-shadow($unit, .2);
-  align-items: center;
-  border-top: 1px rgba(0, 0, 0, 0.1) solid;
-  display: flex;
-  flex-shrink: 0;
-  height: $footer-height;
-  padding: 0 $unit * 2;
+  @include bar;
+  border-top: $border;
   transition: height $transition;
 
   &.hidden {

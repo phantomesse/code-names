@@ -1,11 +1,6 @@
 & {
-  @include set-colors($header-colors);
-  @include box-shadow($unit * 4, .6);
-  align-items: center;
-  display: flex;
-  flex-shrink: 0;
-  height: $header-height;
-  padding: 0 $unit * 2;
+  @include bar;
+  border-top: $border;
 }
 
 h1 {
