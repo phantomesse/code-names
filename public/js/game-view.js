@@ -79,10 +79,14 @@ class GameView {
   _createCards(response) {
     $('.game').empty();
 
+    // Create the card elements.
     for (var key in response.cards) {
       const card = new Card(this, this.sessionName, response.cards[key]);
       this.cardElements.push(card);
+    }
 
+    var self = this;
+    this.cardElements.forEach(function(card) {
       // Handle moving focus with arrow keys.
       card.element.keydown(function(event) {
         const keyCode = event.keyCode;
@@ -94,8 +98,8 @@ class GameView {
         // TODO: Skip cards that have been clicked on.
         switch (keyCode) {
           case 37: // Left.
-            if (index == 0) return;
-            focusIndex = index - 1;
+            focusIndex = self._getLeftFocus(index);
+            if (focusIndex === -1) return;
             break;
           case 38: // Up.
             if (index < _ROW_COUNT) return;
@@ -114,6 +118,26 @@ class GameView {
         $(this).blur();
         $('.card').get(focusIndex).focus();
       });
+    });
+  }
+
+  /**
+   * Returns the index of the card to focus on when the left arrow key is
+   * pressed.
+   *
+   * Returns -1 if the focus should not move.
+   */
+  _getLeftFocus(index) {
+    if (index === 0) return -1;
+    console.log(this.cardElements);
+
+    var focusIndex = index - 1;
+    while (this.cardElements[focusIndex].data.isFlipped) {
+          console.log(focusIndex);
+      console.log(this.cardElements[focusIndex].isFlipped);
+      focusIndex -= 1;
     }
+
+    return focusIndex;
   }
 }
