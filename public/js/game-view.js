@@ -21,10 +21,7 @@ class GameView {
 
     GameView._getGameSessionData(sessionName).done(function(response) {
       // Create card elements.
-      for (var key in response.cards) {
-        self.cardElements.push(
-          new Card(self, self.sessionName, response.cards[key]));
-      };
+      self._createCards(response);
 
       // Set starting team.
       var startingTeam = response.startingTeam;
@@ -43,6 +40,15 @@ class GameView {
       const parameters = getParameters();
       if ('view' in parameters) self.view = parameters['view'];
       self._toggleView();
+    });
+  }
+
+  updateCardsLeft() {
+    $.get('/cards-left', {
+      'sessionName': this.sessionName
+    }, function(response) {
+      $('.words-left.red').text((response['red'] || 0) + ' cards left');
+      $('.words-left.blue').text((response['blue'] || 0) + ' cards left');
     });
   }
 
@@ -70,22 +76,12 @@ class GameView {
     });
   }
 
-  updateCardsLeft() {
-    $.get('/cards-left', {
-      'sessionName': this.sessionName
-    }, function(response) {
-      $('.words-left.red').text((response['red'] || 0) + ' cards left');
-      $('.words-left.blue').text((response['blue'] || 0) + ' cards left');
-    });
-  }
-
-  _generateCards(data) {
+  _createCards(response) {
     $('.game').empty();
 
-    var self = this;
-    for (var i = 0; i < data.words.length; i++) {
-      const word = data.words[i];
-      const isFlipped = data.flippedWords.includes(word);
+    for (var key in response.cards) {
+      const card = new Card(this, this.sessionName, response.cards[key]);
+      this.cardElements.push(card);
 
       // Handle moving focus with arrow keys.
       card.element.keydown(function(event) {
