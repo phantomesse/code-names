@@ -49,17 +49,7 @@ footer {
 }
 
 .game {
-  align-content: stretch;
-  align-items: stretch;
-  box-sizing: border-box;
-  display: grid;
-  flex-grow: 1;
-  flex-shrink: 0;
-  grid-gap: $unit;
-  grid-template-columns: repeat(5, 1fr);
-  min-height: calc(100% - #{$header-height} - #{$footer-height});
-  padding: $unit;
-  width: 100%;
+  @import 'components/game';
 }
 
 .card {
