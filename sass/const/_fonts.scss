@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+@import url('https://fonts.googleapis.com/css?family=Oxygen:400,700');
 
-$_font-family: 'Raleway', sans-serif;
+$_font-family: 'Oxygen', sans-serif;
 
 $body-font: (
   font-family: $_font-family,
@@ -8,25 +8,8 @@ $body-font: (
   font-weight: 400
 );
 
-$header-font: (
-  font-family: $_font-family,
-  font-size: $unit * 3 / 2,
-  font-weight: 700
-);
-
 $input-font: (
   font-family: $_font-family,
   font-size: $unit,
-  font-weight: 700
+  font-weight: 400
 );
-
-$card-font: (
-  font-family: $_font-family,
-  font-size: $unit * 2,
-  font-weight: 700
-);
-
-@mixin set-font($font-map) {
-  $properties: ('font-family', 'font-size', 'font-weight');
-  @include set-properties($font-map, $properties);
-}

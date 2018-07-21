@@ -1,12 +1,12 @@
 @import 'const/dimensions';
-@import 'const/mixins';
 @import 'const/colors';
 @import 'const/fonts';
 
+@import 'mixins/mixins';
+@import 'mixins/bar';
+
 html,
 body {
-  @include set-colors($body-colors);
-  @include set-font($body-font);
   border: 0;
   height: 100%;
   margin: 0;
@@ -14,44 +14,37 @@ body {
   width: 100%;
 }
 
+html {
+  background: map-get($bar-colors, background);
+}
+
 body {
+  @include set-font($body-font);
+  @include set-colors($body-colors);
   display: flex;
   flex-direction: column;
-  min-width: 680px;
 }
 
-input[type=text] {
+input {
   @import 'components/input';
-}
-
-button:not(.card) {
-  @import 'components/button';
 }
 
 header {
   @import 'components/header';
 }
 
-footer {
-  @import 'components/footer';
-}
+main {
+  flex-grow: 1;
 
-.init {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  width: 100%;
+  &.home {
+    @import 'views/home';
+  }
 
-  .session-picker {
-    @import 'components/session-picker';
+  .card {
+    @import 'components/card';
   }
 }
 
-.game {
-  @import 'components/game';
-}
-
-.card {
-  @import 'components/card';
+footer {
+  @import 'components/footer';
 }

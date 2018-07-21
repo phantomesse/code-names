@@ -9,27 +9,12 @@
 
 <body>
   <header>
-    <h1><a href="/">Code Names</a></h1>
-    <button class="view-toggle"></button>
-    <button class="reset">New Game</button>
+    <a>Code Names</a>
   </header>
 
-  <section class="init">
-    <div class="session-picker">
-      <input type="text" placeholder="join a session" />
+  <main></main>
 
-      <button>create session</button>
-    </div>
-  </section>
-
-  <section class="game"></section>
-
-  <footer class="hidden">
-    <span><span class="starting-team"></span> goes first.</span>
-
-    <div class="words-left red"></div>
-    <div class="words-left blue"></div>
-  </footer>
+  <footer></footer>
 
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
   <script
@@ -38,13 +23,12 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous">
   </script>
-  <script type="text/javascript" src="js/utils.js"></script>
-  <script type="text/javascript" src="js/card.js"></script>
-  <script type="text/javascript" src="js/game-view.js"></script>
-  <script type="text/javascript" src="js/init-view.js"></script>
-  <script type="text/javascript" src="js/view-controller.js"></script>
+  <script type="text/javascript" src="js/components/card.js"></script>
+  <script type="text/javascript" src="js/views/view.js"></script>
+  <script type="text/javascript" src="js/views/home-view.js"></script>
+  <script type="text/javascript" src="js/views/game-view.js"></script>
+  <script type="text/javascript" src="js/controllers/view-controller.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
-
 </body>
 
 </html>

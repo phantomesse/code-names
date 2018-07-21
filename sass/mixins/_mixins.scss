@@ -1,0 +1,28 @@
+/** Mixins used globally across components. */
+
+@mixin _set-properties($map, $properties) {
+  @each $property in $properties {
+    @if map-has-key($map, $property) {
+      #{$property}: map-get($map, $property);
+    }
+  }
+
+  $states: ('hover', 'focus');
+  @each $state in $states {
+    @if map-has-key($map, #{$state}-state) {
+      &:#{$state} {
+        @include _set-properties(map-get($map, #{$state}-state), $properties);
+      }
+    }
+  }
+}
+
+@mixin set-font($font-map) {
+  $properties: ('font-family', 'font-size', 'font-weight');
+  @include _set-properties($font-map, $properties);
+}
+
+@mixin set-colors($color-map) {
+  $properties: ('background', 'color', 'border-color');
+  @include _set-properties($color-map, $properties);
+}

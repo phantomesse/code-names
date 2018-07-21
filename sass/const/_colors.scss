@@ -15,37 +15,8 @@ $body-colors: (
 
 $bar-colors: (
   background: darken(map-get($_theme, bg-color), 5%),
-  color: desaturate(lighten(map-get($_theme, bg-color), 30%), 10%)
-);
-
-$h1-colors: (
-  color: map-get($bar-colors, color),
-
-  hover-state: (
-    color: lighten(saturate(map-get($bar-colors, color), 20%), 20%)
-  ),
-
-  focus-state: (
-    color: lighten(saturate(map-get($bar-colors, color), 20%), 20%)
-  )
-);
-
-$input-colors: (
-  background: lighten(map-get($_theme, bg-color), 10%),
-  color: map-get($_theme, fg-color)
-);
-
-$button-colors: (
-  background: map-get($_theme, accent-color),
-  color: map-get($_theme, fg-color),
-
-  hover-state: (
-    background: darken(map-get($_theme, accent-color), 2%)
-  ),
-
-  focus-state: (
-    background: darken(map-get($_theme, accent-color), 2%)
-  )
+  color: desaturate(lighten(map-get($_theme, bg-color), 30%), 10%),
+  border-color: darken(map-get($_theme, bg-color), 10%)
 );
 
 $card-colors: (
@@ -62,59 +33,20 @@ $card-colors: (
   )
 );
 
-$card-red-colors: (
-  background: map-get($_theme, card-red-color),
-  color: lighten(map-get($_theme, card-red-color), 30%),
+$input-text-colors: (
+  background: lighten(map-get($_theme, bg-color), 10%),
+  color: map-get($_theme, fg-color)
+);
+
+$input-button-colors: (
+  background: map-get($_theme, accent-color),
+  color: map-get($_theme, fg-color),
 
   hover-state: (
-    border-color: transparent
+    background: darken(map-get($_theme, accent-color), 2%)
   ),
 
   focus-state: (
-    border-color: transparent
+    background: darken(map-get($_theme, accent-color), 2%)
   )
 );
-
-$card-blue-colors: (
-  background: map-get($_theme, card-blue-color),
-  color: lighten(map-get($_theme, card-blue-color), 30%),
-
-  hover-state: (
-    border-color: transparent
-  ),
-
-  focus-state: (
-    border-color: transparent
-  )
-);
-
-$card-death-colors: (
-  background: map-get($_theme, card-death-color),
-  color: lighten(map-get($_theme, card-death-color), 30%),
-
-  hover-state: (
-    border-color: transparent
-  ),
-
-  focus-state: (
-    border-color: transparent
-  )
-);
-
-$card-neutral-colors: (
-  background: map-get($_theme, card-neutral-color),
-  color: lighten(map-get($_theme, card-neutral-color), 30%),
-
-  hover-state: (
-    border-color: transparent
-  ),
-
-  focus-state: (
-    border-color: transparent
-  )
-);
-
-@mixin set-colors($color-map) {
-  $properties: ('background', 'color', 'border-color');
-  @include set-properties($color-map, $properties);
-}

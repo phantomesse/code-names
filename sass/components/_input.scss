@@ -1,7 +1,6 @@
 $_height: $unit * 2;
 
 & {
-  @include set-colors($input-colors);
   @include set-font($input-font);
   border-radius: $_height / 2;
   border: 0;
@@ -9,4 +8,18 @@ $_height: $unit * 2;
   line-height: $_height;
   outline: none;
   padding: 0 $unit;
+  transition: all $transition;
+}
+
+&[type=text] {
+  @include set-colors($input-text-colors);
+
+  &::placeholder {
+    color: rgba(map-get($input-text-colors, color), .5);
+  }
+}
+
+&[type=submit] {
+  @include set-colors($input-button-colors);
+  cursor: pointer;
 }
