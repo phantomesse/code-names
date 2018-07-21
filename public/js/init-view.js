@@ -11,6 +11,9 @@ class InitView {
     // Hide view toggle.
     $('.view-toggle').hide();
 
+    // Hide reset button.
+    $('.reset').hide();
+
     var sessionPickerInput = $('.session-picker input[type=text]');
     var sessionPickerButton = $('.session-picker button');
 
