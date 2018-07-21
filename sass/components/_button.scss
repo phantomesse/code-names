@@ -10,4 +10,5 @@ $_height: $unit * 2;
   line-height: $_height;
   outline: none;
   padding: 0 $unit;
+  transition: all $transition;
 }
