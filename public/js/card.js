@@ -49,6 +49,8 @@ class Card {
       this.data.isFlipped = true;
       this.gameView.updateCardsLeft();
     }
-    this.element.addClass('flipped ' + this.data.cardType);
+    this.element
+      .addClass('flipped ' + this.data.cardType)
+      .attr('tabIndex', '-1');
   }
 }
