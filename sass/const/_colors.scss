@@ -41,6 +41,10 @@ $button-colors: (
 
   hover-state: (
     background: darken(map-get($_theme, accent-color), 2%)
+  ),
+
+  focus-state: (
+    background: darken(map-get($_theme, accent-color), 2%)
   )
 );
 
