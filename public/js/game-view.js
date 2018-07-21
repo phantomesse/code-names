@@ -99,22 +99,19 @@ class GameView {
         switch (keyCode) {
           case 37: // Left.
             focusIndex = self._getLeftFocus(index);
-            if (focusIndex === -1) return;
             break;
           case 38: // Up.
-            if (index < _ROW_COUNT) return;
-            focusIndex = index - _ROW_COUNT;
+            focusIndex = self._getUpFocus(index);
             break;
           case 39: // Right.
-            if (index == _WORD_COUNT - 1) return;
-            focusIndex = index + 1;
+            focusIndex = self._getRightFocus(index);
             break;
           case 40: // Down.
-            if (index > _WORD_COUNT - _ROW_COUNT - 1) return;
-            focusIndex = index + _ROW_COUNT;
+            focusIndex = self._getDownFocus(index);
             break;
         }
 
+        if (focusIndex === -1) return;
         $(this).blur();
         $('.card').get(focusIndex).focus();
       });
@@ -129,13 +126,61 @@ class GameView {
    */
   _getLeftFocus(index) {
     if (index === 0) return -1;
-    console.log(this.cardElements);
 
     var focusIndex = index - 1;
     while (this.cardElements[focusIndex].data.isFlipped) {
-          console.log(focusIndex);
-      console.log(this.cardElements[focusIndex].isFlipped);
       focusIndex -= 1;
+    }
+
+    return focusIndex;
+  }
+
+  /**
+   * Returns the index of the card to focus on when the up arrow key is
+   * pressed.
+   *
+   * Returns -1 if the focus should not move.
+   */
+  _getUpFocus(index) {
+    if (index < _ROW_COUNT) return -1;
+
+    var focusIndex = index - _ROW_COUNT;
+    while (this.cardElements[focusIndex].data.isFlipped) {
+      focusIndex -= _ROW_COUNT;
+    }
+
+    return focusIndex;
+  }
+
+  /**
+   * Returns the index of the card to focus on when the right arrow key is
+   * pressed.
+   *
+   * Returns -1 if the focus should not move.
+   */
+  _getRightFocus(index) {
+    if (index == _WORD_COUNT - 1) return -1;
+
+    var focusIndex = index + 1;
+    while (this.cardElements[focusIndex].data.isFlipped) {
+      focusIndex += 1;
+    }
+
+    return focusIndex;
+  }
+
+  /**
+   * Returns the index of the card to focus on when the down arrow key is
+   * pressed.
+   *
+   * Returns -1 if the focus should not move.
+   */
+  _getDownFocus(index) {
+    if (index > _WORD_COUNT - _ROW_COUNT - 1) return -1;
+
+    var focusIndex = index + _ROW_COUNT;
+    while (this.cardElements[focusIndex].data.isFlipped) {
+      focusIndex += _ROW_COUNT;
     }
 
     return focusIndex;
