@@ -8,6 +8,8 @@ class GameView extends View {
     super(viewController);
 
     this.sessionName = sessionName;
+
+    this.showFooter();
   }
 
   get className() {

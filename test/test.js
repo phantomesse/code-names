@@ -1,8 +1,21 @@
 "use strict";
 
 const assert = require('assert');
+const Utils = require('../app/utils.js');
 const CardType = require('../app/card-type.js');
 const dataGenerator = require('../app/data-generator.js');
+
+describe('Session name validator tests', function() {
+  it('Session name validator tests', function() {
+    assert.strictEqual(
+      Utils.validateSessionName('hello-world').isValid, true);
+
+    assert.strictEqual(
+      Utils.validateSessionName('hello world').isValid, false);
+
+    // TODO: test invalidation reasons, empty str, undefined, and invalid characters
+  });
+});
 
 describe('DataGenerator tests', function() {
   it('#getWords returns the correct number of words', function() {
@@ -33,7 +46,8 @@ describe('DataGenerator tests', function() {
     function() {
       const cardCount = 25;
       const startingTeam = CardType.BLUE;
-      const cardTypes = dataGenerator.getCardTypes(cardCount, startingTeam);
+      const cardTypes = dataGenerator.getCardTypes(cardCount,
+        startingTeam);
       assertCardTypeCounts(cardTypes, {
         red: 8,
         blue: 9,
@@ -47,7 +61,8 @@ describe('DataGenerator tests', function() {
     function() {
       const cardCount = 25;
       const startingTeam = CardType.RED;
-      const cardTypes = dataGenerator.getCardTypes(cardCount, startingTeam);
+      const cardTypes = dataGenerator.getCardTypes(cardCount,
+        startingTeam);
       assertCardTypeCounts(cardTypes, {
         red: 9,
         blue: 8,
