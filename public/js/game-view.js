@@ -8,10 +8,10 @@ const _WORD_COUNT = _ROW_COUNT * _COLUMN_COUNT;
 class GameView {
   constructor(sessionName) {
     this.sessionName = sessionName;
-    this.cardElements = [];
+    this.cards = [];
     this.view = _View.TEAM;
 
-    var self = this;
+    const self = this;
     $('.view-toggle').show().click(function() {
       self.view = self.view === _View.TEAM ? _View.SPYMASTER : _View.TEAM;
       history.pushState(null, null,
@@ -71,28 +71,38 @@ class GameView {
     }
 
     var self = this;
-    this.cardElements.forEach(function(cardElement) {
+    this.cards.forEach(function(cardElement) {
       cardElement.setView(self.view);
     });
   }
 
+  /** Create card elements. */
   _createCards(response) {
     $('.game').empty();
 
     // Create the card elements.
     for (var key in response.cards) {
       const card = new Card(this, this.sessionName, response.cards[key]);
-      this.cardElements.push(card);
+      this.cards.push(card);
     }
 
     // Handle focus move.
     const self = this;
-    this.cardElements.forEach((card) => self._handleCardFocus(card));
+    this.cards.forEach((card) => self._handleCardFocus(card));
+
+    // Auto focus on the first unflipped card.
+    for (var i = 0; i < this.cards.length; i++) {
+      const card = this.cards[i];
+      if (!card.data.isFlipped) {
+        card.element.focus();
+        break;
+      }
+    }
   }
 
   /** Handle moving focus with arrow keys. */
   _handleCardFocus(card) {
-    var self = this;
+    const self = this;
     card.element.keydown(function(event) {
       const keyCode = event.keyCode;
       if (keyCode < 37 || keyCode > 40) return;
@@ -102,7 +112,7 @@ class GameView {
 
       do {
         index = GameView._getFocusIndex(keyCode, index);
-      } while (self.cardElements[index].data.isFlipped);
+      } while (self.cards[index].data.isFlipped);
 
       $(this).blur();
       $('.card').get(index).focus();
