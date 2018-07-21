@@ -19,6 +19,30 @@ class GameView {
       self._toggleView();
     });
 
+    $('.reset').click(function() {
+      $.get('/reset', {
+        'sessionName': self.sessionName
+      }, function(response) {
+        $('.game').empty();
+
+        // Create card elements.
+        self._createCards(response);
+
+        // Set starting team.
+        var startingTeam = response.startingTeam;
+        startingTeam = startingTeam.charAt(0).toUpperCase() +
+          startingTeam.substr(1) + ' team';
+        $('.starting-team')
+          .removeClass('red')
+          .removeClass('blue')
+          .addClass(response.startingTeam)
+          .text(startingTeam);
+
+        self.updateCardsLeft();
+        self._toggleView();
+      });
+    });
+
     GameView._getGameSessionData(sessionName).done(function(response) {
       // Create card elements.
       self._createCards(response);

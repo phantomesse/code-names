@@ -25,9 +25,18 @@ class GameSession {
     this.connectionCount = 1;
 
     /** Which team goes first (CardType.RED or CardType.BLUE). */
-    this.startingTeam = dataGenerator.getStartingTeam();
+    this.startingTeam;
 
     /** Map of word to card in this game. */
+    this.cards;
+
+    // Instantiate the game.
+    this.reset();
+  }
+
+  /** Generates new starting team and cards. */
+  reset() {
+    this.startingTeam = dataGenerator.getStartingTeam();
     this.cards = GameSession.generateCards(wordCount, this.startingTeam);
   }
 

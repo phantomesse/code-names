@@ -60,6 +60,30 @@ server.get('/game-session', function(request, response) {
 });
 
 /**
+ * Generate new cards for a given game session.
+ */
+server.get('/reset', function(request, response) {
+  response.setHeader('Content-Type', 'application/json');
+
+  // Get the session name from the request.
+  const sessionName = request.query.sessionName;
+
+  // Return an error if the session name is invalid.
+  if (!app.doesGameSessionExist(sessionName)) {
+    response.send(JSON.stringify({
+      error: 'session name does not exist'
+    }));
+    return;
+  }
+
+  const gameSession = app.getGameSession(sessionName);
+  gameSession.reset();
+
+  // Return GameSession as a JSON.
+  response.send(JSON.stringify(gameSession));
+});
+
+/**
  * Get number of cards left for each team for a given game session.
  */
 server.get('/cards-left', function(request, response) {
