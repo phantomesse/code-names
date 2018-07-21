@@ -4,7 +4,7 @@ $box-shadow: 0 0 $unit rgba(0, 0, 0, .2);
 
 /* Shared syling between the header and the footer. */
 @mixin bar {
-  @include set-colors($header-colors);
+  @include set-colors($bar-colors);
   align-items: center;
   box-shadow: $box-shadow;
   box-sizing: border-box;

@@ -13,9 +13,21 @@ $body-colors: (
   color: map-get($_theme, fg-color)
 );
 
-$header-colors: (
+$bar-colors: (
   background: darken(map-get($_theme, bg-color), 5%),
   color: desaturate(lighten(map-get($_theme, bg-color), 30%), 10%)
+);
+
+$h1-colors: (
+  color: map-get($bar-colors, color),
+
+  hover-state: (
+    color: lighten(saturate(map-get($bar-colors, color), 20%), 20%)
+  ),
+
+  focus-state: (
+    color: lighten(saturate(map-get($bar-colors, color), 20%), 20%)
+  )
 );
 
 $input-colors: (

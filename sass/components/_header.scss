@@ -7,6 +7,13 @@ h1 {
   @include set-font($header-font);
   margin: 0;
   padding: 0;
+
+  a {
+    @include set-colors($h1-colors);
+    outline: none;
+    text-decoration: none;
+    transition: all $transition;
+  }
 }
 
 .view-toggle {
