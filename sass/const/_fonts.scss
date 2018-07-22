@@ -13,3 +13,9 @@ $input-font: (
   font-size: $unit,
   font-weight: 400
 );
+
+$card-font: (
+  font-family: $_font-family,
+  font-size: $unit * 2,
+  font-weight: 700
+);

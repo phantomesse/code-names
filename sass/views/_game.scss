@@ -1,0 +1,12 @@
+& {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: $unit;
+  grid-row-gap: $unit;
+  box-sizing: border-box;
+  padding: $unit;
+}
+
+.card {
+  @import 'components/card';
+}

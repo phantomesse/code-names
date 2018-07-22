@@ -8,15 +8,30 @@ class GameView extends View {
     super(viewController);
 
     this.sessionName = sessionName;
+    this.cards;
 
     this.showFooter();
 
-    ApiController.getSession(sessionName).done(function(response) {
-      console.log(response);
-    });
+    const self = this;
+    ApiController.getSession(sessionName).done(
+      response => self._renderGame(response));
   }
 
   get className() {
     return 'game';
+  }
+
+  _renderGame(response) {
+    const self = this;
+
+    console.log(response);
+
+    // Render cards.
+    this.cards = [];
+    for (var key in response.cards) {
+      const card = new Card(response.cards[key]);
+      card.element.appendTo(this.element);
+      this.cards.push(card);
+    }
   }
 }

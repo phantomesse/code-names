@@ -1,3 +1,27 @@
 & {
   @include set-colors($card-colors);
+  @include set-font($card-font);
+  align-items: center;
+  border-radius: $unit / 2;
+  border-style: solid;
+  border-width: $unit / 2;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  outline: none;
+  padding: $unit;
+  transition: all $transition;
+}
+
+@media (max-width: 1050px) {
+  & {
+    font-size: $unit * 3 / 2;
+  }
+}
+
+@media (max-width: 860px) {
+  & {
+    font-size: $unit;
+  }
 }

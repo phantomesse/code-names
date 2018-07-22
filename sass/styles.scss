@@ -21,8 +21,9 @@ html {
 body {
   @include set-font($body-font);
   @include set-colors($body-colors);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  min-width: 680px;
 }
 
 input {
@@ -40,8 +41,8 @@ main {
     @import 'views/home';
   }
 
-  .card {
-    @import 'components/card';
+  &.game {
+    @import 'views/game';
   }
 }
 
