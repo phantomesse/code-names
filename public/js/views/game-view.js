@@ -10,10 +10,14 @@ const _WORD_COUNT = _ROW_COUNT * _COLUMN_COUNT;
 class GameView extends View {
   constructor(viewController, sessionName) {
     super(viewController);
+    const self = this;
 
     this.sessionName = sessionName;
+
+    /** Card objects in the game. */
     this.cards;
 
+    /** Message that shows the starting team. */
     this.startingTeamElement = $('<b>');
     $('<span>')
       .addClass('starting-team')
@@ -21,9 +25,24 @@ class GameView extends View {
       .append(' team goes first')
       .appendTo('footer');
 
+    /** Reset button. */
+    this.resetButton = $('<input type="button">')
+      .val('reset')
+      .click(function() {
+        socket.emit('reset cards', self.sessionName);
+        ApiController.getSession(self.sessionName).done(
+          response => self._renderGame(response));
+      })
+      .appendTo('header');
+
+    socket.on('reset cards', function(sessionName) {
+      if (sessionName !== self.sessionName) return;
+      ApiController.getSession(self.sessionName).done(
+        response => self._renderGame(response));
+    });
+
     this.showFooter();
 
-    const self = this;
     ApiController.getSession(sessionName).done(
       response => self._renderGame(response));
   }
@@ -34,6 +53,8 @@ class GameView extends View {
 
   _renderGame(response) {
     const self = this;
+
+    $('main').empty();
 
     // Render cards.
     this.cards = [];

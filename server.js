@@ -69,6 +69,12 @@ io.on('connection', function(socket) {
     app.getGameSession(sessionName).flipWord(word);
     socket.broadcast.emit('flip word', word, sessionName);
   });
+
+  socket.on('reset cards', function(sessionName) {
+    app.getGameSession(sessionName).reset();
+    console.log(app.getGameSession(sessionName));
+    socket.broadcast.emit('reset cards', sessionName);
+  });
 });
 
 /** Start up server. */
