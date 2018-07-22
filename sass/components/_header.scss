@@ -2,3 +2,9 @@
   @include bar;
   border-bottom-width: 1px;
 }
+
+a {
+  @include set-colors($title-colors);
+  @include set-font($title-font);
+  text-decoration: none;
+}

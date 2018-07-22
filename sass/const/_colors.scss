@@ -18,6 +18,18 @@ $error-colors: (
   color: map-get($_theme, error-color)
 );
 
+$title-colors: (
+  color: desaturate(lighten(map-get($_theme, bg-color), 30%), 10%),
+
+  hover-state: (
+    color: desaturate(lighten(map-get($_theme, bg-color), 40%), 10%)
+  ),
+
+  focus-state: (
+    color: desaturate(lighten(map-get($_theme, bg-color), 40%), 10%)
+  )
+);
+
 $bar-colors: (
   background: darken(map-get($_theme, bg-color), 5%),
   color: desaturate(lighten(map-get($_theme, bg-color), 30%), 10%),

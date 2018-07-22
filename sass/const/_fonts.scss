@@ -8,6 +8,12 @@ $body-font: (
   font-weight: 400
 );
 
+$title-font: (
+  font-family: $_font-family,
+  font-size: $unit * 3 / 2,
+  font-weight: 700
+);
+
 $input-font: (
   font-family: $_font-family,
   font-size: $unit,

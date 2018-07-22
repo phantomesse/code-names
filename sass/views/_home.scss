@@ -1,5 +1,3 @@
-$_error-height: $unit * 2;
-
 & {
   align-items: center;
   display: flex;
@@ -19,15 +17,14 @@ input[type=submit] {
 }
 
 form.error span.error {
-  height: $_error-height;
+  opacity: 1;
 }
 
 span.error {
   @include set-colors($error-colors);
-  display: flex;
-  height: 0;
-  line-height: $_error-height;
-  overflow: hidden;
-  padding: 0 $unit;
+  display: block;
+  opacity: 0;
+  padding: $unit;
   position: absolute;
+  transition: opacity $transition;
 }
