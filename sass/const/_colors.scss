@@ -2,7 +2,7 @@ $_theme: (
   bg-color: #34495e,
   fg-color: #ecf0f1,
   error-color: lighten(#E74C3C, 20%),
-  accent-color: #212f3d,
+  accent-color: #2d4051,
   card-red-color: #E74C3C,
   card-blue-color: #3498DB,
   card-death-color: #545455,
@@ -15,7 +15,7 @@ $body-colors: (
 );
 
 $dialog-colors: (
-  background: rgba(darken(map-get($_theme, bg-color), 20%), .5)
+  background: rgba(darken(map-get($_theme, bg-color), 20%), .8)
 );
 
 $error-colors: (
@@ -54,6 +54,59 @@ $card-colors: (
   )
 );
 
+
+$card-red-colors: (
+  background: map-get($_theme, card-red-color),
+  color: lighten(map-get($_theme, card-red-color), 30%),
+
+  hover-state: (
+    border-color: darken(map-get($_theme, card-red-color), 5%)
+  ),
+
+  focus-state: (
+    border-color: darken(map-get($_theme, card-red-color), 2%)
+  )
+);
+
+$card-blue-colors: (
+  background: map-get($_theme, card-blue-color),
+  color: lighten(map-get($_theme, card-blue-color), 30%),
+
+  hover-state: (
+    border-color: darken(map-get($_theme, card-blue-color), 5%)
+  ),
+
+  focus-state: (
+    border-color: darken(map-get($_theme, card-blue-color), 2%)
+  )
+);
+
+$card-death-colors: (
+  background: map-get($_theme, card-death-color),
+  color: lighten(map-get($_theme, card-death-color), 30%),
+
+  hover-state: (
+    border-color: darken(map-get($_theme, card-death-color), 5%)
+  ),
+
+  focus-state: (
+    border-color: darken(map-get($_theme, card-death-color), 2%)
+  )
+);
+
+$card-neutral-colors: (
+  background: map-get($_theme, card-neutral-color),
+  color: lighten(map-get($_theme, card-neutral-color), 30%),
+
+  hover-state: (
+    border-color: darken(map-get($_theme, card-neutral-color), 5%)
+  ),
+
+  focus-state: (
+    border-color: darken(map-get($_theme, card-neutral-color), 2%)
+  )
+);
+
 $input-text-colors: (
   background: lighten(map-get($_theme, bg-color), 10%),
   color: map-get($_theme, fg-color)
@@ -64,10 +117,10 @@ $input-button-colors: (
   color: map-get($_theme, fg-color),
 
   hover-state: (
-    background: darken(map-get($_theme, accent-color), 2%)
+    background: darken(map-get($_theme, accent-color), 5%)
   ),
 
   focus-state: (
-    background: darken(map-get($_theme, accent-color), 2%)
+    background: darken(map-get($_theme, accent-color), 10%)
   )
 );

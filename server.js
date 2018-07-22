@@ -64,6 +64,11 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     //console.log('user disconnected');
   });
+
+  socket.on('flip word', function(word, sessionName) {
+    app.getGameSession(sessionName).flipWord(word);
+    socket.broadcast.emit('flip word', word, sessionName);
+  });
 });
 
 /** Start up server. */

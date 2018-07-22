@@ -29,7 +29,10 @@ class GameView extends View {
     // Render cards.
     this.cards = [];
     for (var key in response.cards) {
-      const card = new Card(this.viewController, response.cards[key]);
+      const card = new Card(
+        this.viewController,
+        this.sessionName,
+        response.cards[key]);
       card.element.appendTo(this.element);
       this.cards.push(card);
     }

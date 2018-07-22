@@ -19,7 +19,22 @@
 }
 
 &.flipped {
-  background: pink;
+}
+
+&.red {
+  @include set-colors($card-red-colors);
+}
+
+&.blue {
+  @include set-colors($card-blue-colors);
+}
+
+&.death {
+  @include set-colors($card-death-colors);
+}
+
+&.neutral {
+  @include set-colors($card-neutral-colors);
 }
 
 @media (max-width: 1050px) {
