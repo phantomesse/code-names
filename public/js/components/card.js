@@ -37,6 +37,7 @@ class Card {
           if (action === 'submit') {
             self._flip(true);
           }
+          self.element.focus();
         });
     }
   }
