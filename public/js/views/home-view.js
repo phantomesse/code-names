@@ -13,6 +13,9 @@ class HomeView extends View {
     /** Form input for session name. */
     this.input;
 
+    /** Form submit button. */
+    this.submitButton;
+
     /** Container for an error. */
     this.errorContainer;
 
@@ -35,11 +38,18 @@ class HomeView extends View {
     this.input = $('<input type="text">')
       .attr('placeholder', 'enter a session name')
       .on('focus', () => self._hideError())
+      .keyup(function() {
+        const sessionName = $(this).val();
+        ApiController.doesSessionExist(sessionName).done(function(response) {
+          if (response.exists) self.submitButton.val('join session');
+          else self.submitButton.val('create session');
+        });
+      })
       .appendTo(this.form)
       .focus();
 
     // TODO: change submit val to "join session" if the session name exists.
-    const submit = $('<input type="submit">')
+    this.submitButton = $('<input type="submit">')
       .val('create session')
       .appendTo(this.form);
 

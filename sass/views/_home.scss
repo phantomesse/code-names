@@ -9,11 +9,13 @@ $_error-height: $unit * 2;
 input[type=text] {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
+  width: $unit * 15;
 }
 
 input[type=submit] {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+  width: $unit * 9;
 }
 
 form.error span.error {

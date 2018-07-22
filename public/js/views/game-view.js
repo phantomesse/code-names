@@ -10,6 +10,10 @@ class GameView extends View {
     this.sessionName = sessionName;
 
     this.showFooter();
+
+    ApiController.getSession(sessionName).done(function(response) {
+      console.log(response);
+    });
   }
 
   get className() {

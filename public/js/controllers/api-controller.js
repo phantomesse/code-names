@@ -7,9 +7,21 @@
  */
 class ApiController {
   static validateSessionName(sessionName) {
+    return ApiController._get('/validate-session-name', sessionName);
+  }
+
+  static doesSessionExist(sessionName) {
+    return ApiController._get('/does-session-exist', sessionName);
+  }
+
+  static getSession(sessionName) {
+    return ApiController._get('/session', sessionName);
+  }
+
+  static _get(path, sessionName) {
     var deferred = $.Deferred();
 
-    $.get('/validate-session-name', {
+    $.get(path, {
       'sessionName': sessionName
     }, function(response) {
       deferred.resolve(response);

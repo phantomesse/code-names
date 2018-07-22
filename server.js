@@ -5,6 +5,7 @@ const io = require('socket.io')(http);
 const sassMiddleware = require('node-sass-middleware')
 const path = require('path');
 const port = process.env.PORT || 1337;
+const app = require('./app/app.js');
 const Utils = require('./app/utils.js');
 
 /** SASS compilations. */
@@ -28,7 +29,32 @@ server.get('/', function(request, response) {
 /** Validates a given session name. */
 server.get('/validate-session-name', function(request, response) {
   response.setHeader('Content-Type', 'application/json');
-  response.send(JSON.stringify(Utils.validateSessionName(request.query.sessionName)));
+  response.send(
+    JSON.stringify(Utils.validateSessionName(request.query.sessionName)));
+});
+
+server.get('/does-session-exist', function(request, response) {
+  response.setHeader('Content-Type', 'application/json');
+  response.send(
+    JSON.stringify({
+      exists: app.doesGameSessionExist(request.query.sessionName)
+    }));
+});
+
+/** Returns data for a game session. */
+server.get('/session', function(request, response) {
+  response.setHeader('Content-Type', 'application/json');
+  const sessionName = request.query.sessionName;
+
+  // Validate session name.
+  const validation = Utils.validateSessionName(sessionName);
+  if (!validation.isValid) {
+    response.send(JSON.stringify({
+      error: 'session name is invalid'
+    }));
+  }
+
+  response.send(JSON.stringify(app.createGameSession(sessionName)));
 });
 
 /** Handle socket.io connections. */
