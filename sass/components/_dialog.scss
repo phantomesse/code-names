@@ -1,0 +1,42 @@
+& {
+  @include set-colors($dialog-colors);
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  opacity: 1;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transition: opacity $transition;
+  width: 100%;
+
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+section {
+  @include set-colors($body-colors);
+  align-content: space-between;
+  border-radius: $unit;
+  box-shadow: 0 0 $unit * 4 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-height: $unit * 6;
+  min-width: $unit * 15;
+  padding: $unit;
+  pointer-events: auto;
+}
+
+p {
+  margin: 0;
+  padding: $unit;
+  width: 100%;
+}
+
+input {
+  margin-left: $unit / 2;
+}

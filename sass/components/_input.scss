@@ -19,7 +19,8 @@ $_height: $unit * 2;
   }
 }
 
-&[type=submit] {
+&[type=submit],
+&[type=button] {
   @include set-colors($input-button-colors);
   cursor: pointer;
 }

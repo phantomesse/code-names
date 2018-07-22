@@ -14,6 +14,10 @@ $body-colors: (
   color: map-get($_theme, fg-color)
 );
 
+$dialog-colors: (
+  background: rgba(darken(map-get($_theme, bg-color), 20%), .5)
+);
+
 $error-colors: (
   color: map-get($_theme, error-color)
 );

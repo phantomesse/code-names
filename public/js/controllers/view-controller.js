@@ -10,6 +10,7 @@ const _MODE_KEY = 'mode';
 class ViewController {
   constructor() {
     this.currentView;
+    this.dialog = new Dialog();
 
     this._renderView();
 
