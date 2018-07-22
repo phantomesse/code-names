@@ -24,6 +24,14 @@ body {
   display: grid;
   grid-template-rows: min-content auto min-content;
   min-width: 680px;
+
+  &.home {
+    @import 'views/home';
+  }
+
+  &.game {
+    @import 'views/game';
+  }
 }
 
 input {
@@ -36,14 +44,6 @@ header {
 
 main {
   flex-grow: 1;
-
-  &.home {
-    @import 'views/home';
-  }
-
-  &.game {
-    @import 'views/game';
-  }
 }
 
 footer {

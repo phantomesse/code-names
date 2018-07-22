@@ -10,6 +10,13 @@ class GameView extends View {
     this.sessionName = sessionName;
     this.cards;
 
+    this.startingTeamElement = $('<b>');
+    $('<span>')
+      .addClass('starting-team')
+      .append(this.startingTeamElement)
+      .append(' team goes first')
+      .appendTo('footer');
+
     this.showFooter();
 
     const self = this;
@@ -24,8 +31,6 @@ class GameView extends View {
   _renderGame(response) {
     const self = this;
 
-    console.log(response);
-
     // Render cards.
     this.cards = [];
     for (var key in response.cards) {
@@ -36,5 +41,12 @@ class GameView extends View {
       card.element.appendTo(this.element);
       this.cards.push(card);
     }
+
+    // Which team starts first.
+    const startingTeam = response.startingTeam;
+    this.startingTeamElement
+      .removeClass()
+      .addClass(startingTeam)
+      .text(startingTeam.charAt(0).toUpperCase() + startingTeam.substr(1));
   }
 }

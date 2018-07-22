@@ -15,10 +15,9 @@ class View {
     this._footer = $('footer');
 
     this.viewController = viewController;
-    this.element = $('main')
-      .empty()
-      .removeClass()
-      .addClass(this.className);
+    this.element = $('main').empty();
+
+    $('body').removeClass().addClass(this.className);
   }
 
   showFooter() {

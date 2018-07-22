@@ -1,4 +1,4 @@
-& {
+main {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: $unit;
@@ -9,4 +9,12 @@
 
 .card {
   @import 'components/card';
+}
+
+.starting-team b.red {
+  color: map-get($card-red-colors, background);
+}
+
+.starting-team b.blue {
+  color: map-get($card-blue-colors, background);
 }
