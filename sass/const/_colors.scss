@@ -1,6 +1,7 @@
 $_theme: (
   bg-color: #34495e,
   fg-color: #ecf0f1,
+  error-color: lighten(#E74C3C, 20%),
   accent-color: #212f3d,
   card-red-color: #E74C3C,
   card-blue-color: #3498DB,
@@ -11,6 +12,10 @@ $_theme: (
 $body-colors: (
   background: map-get($_theme, bg-color),
   color: map-get($_theme, fg-color)
+);
+
+$error-colors: (
+  color: map-get($_theme, error-color)
 );
 
 $bar-colors: (

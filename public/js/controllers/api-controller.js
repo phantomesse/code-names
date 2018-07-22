@@ -7,6 +7,14 @@
  */
 class ApiController {
   static validateSessionName(sessionName) {
+    var deferred = $.Deferred();
 
+    $.get('/validate-session-name', {
+      'sessionName': sessionName
+    }, function(response) {
+      deferred.resolve(response);
+    });
+
+    return deferred.promise();
   }
 }

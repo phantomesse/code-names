@@ -16,7 +16,7 @@ class Utils {
     if (sessionName === undefined) {
       return Utils._invalidSessionName('undefined');
     }
-    if (sessionName.isEmpty) return Utils._invalidSessionName('empty string');
+    if (sessionName === '') return Utils._invalidSessionName('empty string');
 
     if (sessionName.indexOf(' ') > -1) {
       return Utils._invalidSessionName('session name cannot contain spaces');

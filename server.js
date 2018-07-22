@@ -5,6 +5,7 @@ const io = require('socket.io')(http);
 const sassMiddleware = require('node-sass-middleware')
 const path = require('path');
 const port = process.env.PORT || 1337;
+const Utils = require('./app/utils.js');
 
 /** SASS compilations. */
 server.use(sassMiddleware({
@@ -22,6 +23,12 @@ server.use(express.static(path.join(__dirname, 'public')));
 /** Serve index.html. */
 server.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, '/public/index.html'));
+});
+
+/** Validates a given session name. */
+server.get('/validate-session-name', function(request, response) {
+  response.setHeader('Content-Type', 'application/json');
+  response.send(JSON.stringify(Utils.validateSessionName(request.query.sessionName)));
 });
 
 /** Handle socket.io connections. */
