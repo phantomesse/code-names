@@ -14,6 +14,14 @@
   transition: all $transition;
 }
 
+&.selected {
+  background: blue;
+}
+
+&.flipped {
+  background: pink;
+}
+
 @media (max-width: 1050px) {
   & {
     font-size: $unit * 3 / 2;
