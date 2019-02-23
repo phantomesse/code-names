@@ -18,12 +18,15 @@ class App {
 
   /** Checks if a game session exists based on the session name. */
   doesGameSessionExist(sessionName) {
+    sessionName = sessionName.toLowerCase();
     if (sessionName === undefined) return false;
     return this._gameSessions.has(sessionName);
   }
 
   /** Creates a game session if it doesn't already exist. */
   createGameSession(sessionName) {
+    sessionName = sessionName.toLowerCase();
+
     if (this.doesGameSessionExist(sessionName)) {
       return this.getGameSession(sessionName);
     }
@@ -36,7 +39,7 @@ class App {
 
   /** Retrieves a GameSession object. */
   getGameSession(sessionName) {
-    return this._gameSessions.get(sessionName);
+    return this._gameSessions.get(sessionName.toLowerCase());
   }
 
   getGameSessions() {

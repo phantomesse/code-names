@@ -21,18 +21,18 @@ server.use(sassMiddleware({
 server.use(express.static(path.join(__dirname, 'public')));
 
 /** Serve index.html. */
-server.get('/', function(request, response) {
+server.get('/', function (request, response) {
   response.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 /** Check if a game session exists based on a given session name. */
-server.get('/session-names', function(request, response) {
+server.get('/session-names', function (request, response) {
   response.setHeader('Content-Type', 'application/json');
   response.send(JSON.stringify(app.getGameSessions()));
 });
 
 /** Check if a game session exists based on a given session name. */
-server.get('/game-session-exists', function(request, response) {
+server.get('/game-session-exists', function (request, response) {
   response.setHeader('Content-Type', 'application/json');
   response.send(JSON.stringify({
     'exists': app.doesGameSessionExist(request.query.sessionName)
@@ -44,7 +44,7 @@ server.get('/game-session-exists', function(request, response) {
  *
  * If the GameSession does not already exist, create one.
  */
-server.get('/game-session', function(request, response) {
+server.get('/game-session', function (request, response) {
   response.setHeader('Content-Type', 'application/json');
 
   // Get the session name from the request.
@@ -68,7 +68,7 @@ server.get('/game-session', function(request, response) {
 /**
  * Generate new cards for a given game session.
  */
-server.get('/reset', function(request, response) {
+server.get('/reset', function (request, response) {
   response.setHeader('Content-Type', 'application/json');
 
   // Get the session name from the request.
@@ -92,7 +92,7 @@ server.get('/reset', function(request, response) {
 /**
  * Get number of cards left for each team for a given game session.
  */
-server.get('/cards-left', function(request, response) {
+server.get('/cards-left', function (request, response) {
   response.setHeader('Content-Type', 'application/json');
 
   // Get the session name from the request.
@@ -111,14 +111,14 @@ server.get('/cards-left', function(request, response) {
 });
 
 /** Handle socket.io connections. */
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
   //console.log('a user connected');
 
-  socket.on('disconnect', function() {
+  socket.on('disconnect', function () {
     //console.log('user disconnected');
   });
 
-  socket.on('flip word', function(word, sessionName) {
+  socket.on('flip word', function (word, sessionName) {
     console.log(`flipped word (${word}) in session (${sessionName})`);
     app.getGameSession(sessionName).flipWord(word);
     socket.broadcast.emit('flip word', word, sessionName);
@@ -126,6 +126,6 @@ io.on('connection', function(socket) {
 });
 
 /** Start up server. */
-http.listen(port, function() {
+http.listen(port, function () {
   console.log(`listening on localhost:${port}`);
 });

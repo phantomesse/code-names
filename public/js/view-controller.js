@@ -25,6 +25,7 @@ class ViewController {
   }
 
   showGameView(sessionName) {
+    sessionName = sessionName.toLowerCase();
     this.viewType = View.GAME;
     $('.init').hide();
     $('.game').show();
