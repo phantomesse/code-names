@@ -22,16 +22,21 @@ class InitView {
     $.get('/session-names', {}, function(response) {
         console.log(response)
         name = response[0]
+        $('.active-sessions').empty();
         for (var name of response) {
           $('<button>')
           .text(name)
           .addClass('session-button')
           .click(function () {
-            console.log($(this).text())
+            const name = $(this).text();
+            console.log(`navigating to ${name}`);
+            history.pushState(null, null, '?session=' + name);
+            viewController.showGameView(name);
           })
           .appendTo('.active-sessions')
         }
     });
+    
 
     sessionPickerButton.click(function() {
       var sessionName = sessionPickerInput.val();

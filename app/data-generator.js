@@ -15,12 +15,16 @@ class DataGenerator {
   }
 
   /// Retrieves a random array of words.
-  getWords(wordCount) {
+  getWords(wordCount, usedWords) {
     var words = new Set();
-
     while (words.size < wordCount) {
       const index = parseInt(Math.random() * this.words.length)
-      words.add(this.words[index]);
+      const word = this.words[index];
+      if (!usedWords.includes(word)) {
+        words.add(word);
+      } else {
+        console.log(`skipping previously used word ${word}`)
+      }
     }
 
     return Array.from(words);

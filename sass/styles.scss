@@ -56,3 +56,12 @@ footer {
 .card {
   @import 'components/card';
 }
+
+.active-sessions {
+  display: flex;
+  flex-direction: column;
+}
+
+.session-button {
+  margin-top: $unit / 2;
+}

@@ -28,7 +28,9 @@ class GameSession {
     this.startingTeam;
 
     /** Map of word to card in this game. */
-    this.cards;
+    this.cards = {};
+
+    this.usedWords = [];
 
     // Instantiate the game.
     this.reset();
@@ -37,7 +39,9 @@ class GameSession {
   /** Generates new starting team and cards. */
   reset() {
     this.startingTeam = dataGenerator.getStartingTeam();
-    this.cards = GameSession.generateCards(wordCount, this.startingTeam);
+    console.log(this.startingTeam);
+    this.usedWords = this.usedWords.concat(Object.keys(this.cards));
+    this.cards = GameSession.generateCards(wordCount, this.startingTeam, this.usedWords);
   }
 
   /** Updates a word to flipped. */
@@ -64,8 +68,8 @@ class GameSession {
     return cardsLeft;
   }
 
-  static generateCards(wordCount, startingTeam) {
-    const words = dataGenerator.getWords(wordCount);
+  static generateCards(wordCount, startingTeam, usedWords) {
+    const words = dataGenerator.getWords(wordCount, usedWords);
     const cardTypes = dataGenerator.getCardTypes(wordCount, startingTeam);
 
     var cards = {};
