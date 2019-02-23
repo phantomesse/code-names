@@ -1,13 +1,20 @@
 & {
-  align-content: stretch;
-  align-items: stretch;
+  $outer-padding: $unit;
+  $grid-gap-padding: $unit;
   box-sizing: border-box;
   display: grid;
   flex-grow: 1;
   flex-shrink: 0;
-  grid-gap: $unit;
+  grid-gap: $grid-gap-padding;
   grid-template-columns: repeat(5, 1fr);
-  min-height: calc(100% - #{$bar-height * 2});
-  padding: $unit;
+  height: calc(100vh - #{$bar-height * 2} - #{$outer-padding * 2} - #{$grid-gap-padding * 8});
+  min-height: calc(100vh - #{$bar-height * 2} - #{$outer-padding * 2} - #{$grid-gap-padding * 8});
+  padding: $outer-padding;
   width: 100%;
+}
+
+@media (max-width: 700px) {
+  & {
+    grid-gap: $unit / 3;
+  }
 }
