@@ -11,6 +11,9 @@ class InitView {
     // Hide view toggle.
     $('.view-toggle').hide();
 
+    // Hide session name.
+    $('.session-name').hide();
+    
     // Hide reset button.
     $('.reset').hide();
 
@@ -23,6 +26,7 @@ class InitView {
         console.log(response)
         name = response[0]
         $('.active-sessions').empty();
+        $('active-sessions')
         for (var name of response) {
           $('<button>')
           .text(name)
