@@ -13,7 +13,8 @@ class Card {
     if (this.data.isFlipped) this._flipCard(false);
 
     var self = this;
-    socket.on('flip word', function(word, sessionName) {
+    socket.on('flip word', function (word, sessionName) {
+      $('.reset').show();
       if (sessionName !== self.sessionName) return;
       self.gameView.updateCardsLeft();
       if (word === self.data.word) self._flipCard(false);
@@ -44,6 +45,7 @@ class Card {
   }
 
   _flipCard(shouldEmitEvent) {
+    $('.reset').show();
     if (shouldEmitEvent) {
       socket.emit('flip word', this.data.word, this.sessionName);
       this.data.isFlipped = true;
