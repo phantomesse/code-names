@@ -26,6 +26,12 @@ server.get('/', function(request, response) {
 });
 
 /** Check if a game session exists based on a given session name. */
+server.get('/session-names', function(request, response) {
+  response.setHeader('Content-Type', 'application/json');
+  response.send(JSON.stringify(app.getGameSessions()));
+});
+
+/** Check if a game session exists based on a given session name. */
 server.get('/game-session-exists', function(request, response) {
   response.setHeader('Content-Type', 'application/json');
   response.send(JSON.stringify({

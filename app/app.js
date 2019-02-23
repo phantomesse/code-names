@@ -10,6 +10,10 @@ class App {
      * is the GameSession object.
      */
     this._gameSessions = new Map();
+    this.createGameSession('eric');
+    this.createGameSession('lauren');
+    console.log(this._gameSessions);
+    this.getGameSessions();
   }
 
   /** Checks if a game session exists based on the session name. */
@@ -33,6 +37,13 @@ class App {
   /** Retrieves a GameSession object. */
   getGameSession(sessionName) {
     return this._gameSessions.get(sessionName);
+  }
+
+  getGameSessions() {
+    console.log('getting session names');
+    const names = Array.from(this._gameSessions.keys());
+    console.log(names);
+    return names;
   }
 }
 

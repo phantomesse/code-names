@@ -19,6 +19,20 @@ class InitView {
 
     sessionPickerInput.focus();
 
+    $.get('/session-names', {}, function(response) {
+        console.log(response)
+        name = response[0]
+        for (var name of response) {
+          $('<button>')
+          .text(name)
+          .addClass('session-button')
+          .click(function () {
+            console.log($(this).text())
+          })
+          .appendTo('.active-sessions')
+        }
+    });
+
     sessionPickerButton.click(function() {
       var sessionName = sessionPickerInput.val();
       history.pushState(null, null, '?session=' + sessionName);
