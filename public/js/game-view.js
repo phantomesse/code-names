@@ -8,6 +8,10 @@ const _WORD_COUNT = _ROW_COUNT * _COLUMN_COUNT;
 class GameView {
   constructor(sessionName) {
     this.sessionName = sessionName;
+    $('.session-name')
+      .text(`[${this.sessionName}]`)
+      .show();
+
     this.cards = [];
     this.view = _View.TEAM;
 

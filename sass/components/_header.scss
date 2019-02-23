@@ -23,3 +23,8 @@ h1 {
 .reset {
   margin-left: $unit / 2;
 }
+
+.session-name {
+  margin-left: $unit / 2;
+  color: map-get($_theme, fg-color);
+}
