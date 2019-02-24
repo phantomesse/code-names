@@ -39,3 +39,10 @@
     @include set-colors($card-blue-colors);
   }
 }
+
+@media (max-width: 500px) {
+  & {
+    grid-gap: $unit / 3;
+    font-size: $unit * 3 / 4;
+  }
+}

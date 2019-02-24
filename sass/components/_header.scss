@@ -31,7 +31,7 @@ h1 {
 
 @media (max-width: 770px) {
   h1 {
-    font-size: $unit;
+    font-size: $unit * 3 / 4;
   }
 
   .session-name {
