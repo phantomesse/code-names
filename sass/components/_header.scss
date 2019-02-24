@@ -28,3 +28,13 @@ h1 {
   margin-left: $unit / 2;
   color: map-get($_theme, fg-color);
 }
+
+@media (max-width: 770px) {
+  h1 {
+    font-size: $unit;
+  }
+
+  .session-name {
+    font-size: $unit * 2 / 3;
+  }
+}

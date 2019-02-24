@@ -12,3 +12,11 @@ $_height: $unit * 2;
   padding: 0 $unit;
   transition: all $transition;
 }
+
+
+
+@media (max-width: 770px) {
+    & {
+      font-size: $unit * 1 / 2
+    }
+  }
