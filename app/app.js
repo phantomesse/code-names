@@ -10,8 +10,6 @@ class App {
      * is the GameSession object.
      */
     this._gameSessions = new Map();
-    this.createGameSession('eric');
-    this.createGameSession('lauren');
     console.log(this._gameSessions);
     this.getGameSessions();
   }
