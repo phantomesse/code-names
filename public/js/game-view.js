@@ -15,18 +15,22 @@ class GameView {
     this.cards = [];
     this.view = _View.TEAM;
 
+    // Hide reset button initially. We will show it if someone clicks on a card or if a game is already is progress.
+    $('.reset').hide();
+
+
     const self = this;
-    $('.view-toggle').show().click(function() {
+    $('.view-toggle').show().click(function () {
       self.view = self.view === _View.TEAM ? _View.SPYMASTER : _View.TEAM;
       history.pushState(null, null,
         '?session=' + self.sessionName + '&view=' + self.view);
       self._toggleView();
     });
 
-    $('.reset').click(function() {
+    $('.reset').click(function () {
       $.get('/reset', {
         'sessionName': self.sessionName
-      }, function(response) {
+      }, function (response) {
         $('.game').empty();
 
         // Create card elements.
@@ -47,9 +51,17 @@ class GameView {
       });
     });
 
-    GameView._getGameSessionData(sessionName).done(function(response) {
+    GameView._getGameSessionData(sessionName).done(function (response) {
       // Create card elements.
       self._createCards(response);
+
+      // Show the reset button if any card is flipped over.
+      for (var card of self.cards) {
+        if (card.data.isFlipped) {
+          $('.reset').show();
+          break;
+        }
+      }
 
       // Set starting team.
       var startingTeam = response.startingTeam;
@@ -74,7 +86,7 @@ class GameView {
   updateCardsLeft() {
     $.get('/cards-left', {
       'sessionName': this.sessionName
-    }, function(response) {
+    }, function (response) {
       $('.words-left.red').text((response['red'] || 0) + ' cards left');
       $('.words-left.blue').text((response['blue'] || 0) + ' cards left');
     });
@@ -99,7 +111,7 @@ class GameView {
     }
 
     var self = this;
-    this.cards.forEach(function(cardElement) {
+    this.cards.forEach(function (cardElement) {
       cardElement.setView(self.view);
     });
   }
@@ -131,7 +143,7 @@ class GameView {
   /** Handle moving focus with arrow keys. */
   _handleCardFocus(card) {
     const self = this;
-    card.element.keydown(function(event) {
+    card.element.keydown(function (event) {
       const keyCode = event.keyCode;
       if (keyCode < 37 || keyCode > 40) return;
       event.preventDefault();
