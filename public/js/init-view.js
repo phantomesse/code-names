@@ -44,8 +44,15 @@ class InitView {
 
     sessionPickerButton.click(function() {
       var sessionName = sessionPickerInput.val();
-      history.pushState(null, null, '?session=' + sessionName);
-      viewController.showGameView(sessionName);
+      if (sessionName == '') {
+        alert ('Session name must not be blank!')
+      } else if (sessionName.includes(' ')) {
+        alert('Session name may not contain spaces!')
+        sessionPickerInput.val('')
+      } else {
+        history.pushState(null, null, '?session=' + sessionName);
+        viewController.showGameView(sessionName);
+      }
     });
 
     sessionPickerInput.keyup(function() {
