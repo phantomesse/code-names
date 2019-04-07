@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const CardType = require('./card-type.js');
 
-const WORDS_FILE_PATH = path.join(__dirname, '../data/words.json');
+const WORDS_FILE_PATH = path.join(__dirname, '../data/codenames-words.json');
 const DEATH_CARD_COUNT = 1;
 
 /// Generates random data for each game session.
