@@ -1,0 +1,27 @@
+{
+  "name": "code-names",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^13.9.3"
+  },
+  "scripts": {
+    "start" : "tsc; node build/server.js --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phantomesse/code-names.git"
+  },
+  "author": "Lauren Zou",
+  "bugs": {
+    "url": "https://github.com/phantomesse/code-names/issues"
+  },
+  "homepage": "https://github.com/phantomesse/code-names#readme"
+}
