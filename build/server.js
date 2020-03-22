@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const http_1 = require("http");
+const words_controller_1 = __importDefault(require("./backend/words-controller"));
+console.log(words_controller_1.default.getWords());
 const app = express_1.default();
 // Get whether the app is running in prod.
 const isProd = process.argv.includes('--prod');

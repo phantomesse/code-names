@@ -1,7 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import {Server} from 'http';
+import { Server } from 'http';
 import socketIO from 'socket.io';
+
+import wordsController from './backend/words-controller';
+console.log(wordsController.getWords());
 
 const app: express.Application = express();
 

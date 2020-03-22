@@ -6,14 +6,21 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "socket.io": "^2.3.0",
-    "typescript": "^3.8.3"
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "@types/node": "^13.9.3"
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.9.3",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.0",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3"
   },
   "scripts": {
-    "start" : "tsc; node build/server.js --prod"
+    "start": "tsc; node build/server.js --prod",
+    "test": "mocha -r ts-node/register tests/**/*.ts"
   },
   "repository": {
     "type": "git",
