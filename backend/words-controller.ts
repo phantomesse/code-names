@@ -20,12 +20,31 @@ class _WordsController {
   getWords(excludeWords: string[] = []): string[] {
     let words: Set<string> = new Set();
     while (words.size < 25) {
-      let randomIndex = Math.floor(Math.random() * this._words.length);
-      let word = this._words[randomIndex];
-      if (excludeWords.includes(word)) continue;
-      words.add(word);
+      let word = this._randomWord;
+      if (!excludeWords.includes(word)) words.add(word);
     }
     return [...words];
+  }
+
+  /**
+   * Returns a generated session name which is two random words combined
+   * optionally excluding a list of given session names.
+   */
+  getSessionName(excludeSessionNames: string[] = []): string {
+    let words: Set<string> = new Set();
+    while (words.size < 2) words.add(this._randomWord);
+    let sessionName = [...words]
+      .join('-')
+      .toLowerCase()
+      .replace(' ', '-');
+    if (excludeSessionNames.includes(sessionName)) {
+      return this.getSessionName(excludeSessionNames);
+    }
+    return sessionName;
+  }
+
+  private get _randomWord(): string {
+    return this._words[Math.floor(Math.random() * this._words.length)];
   }
 }
 

@@ -125,8 +125,8 @@ Berry
 Bib
 Bicycle
 Big
-BigBang
-BigBen
+Big Bang
+Big Ben
 Bike
 Bikini
 Bill
@@ -734,8 +734,8 @@ Hurl
 Hurt
 Hut
 Ice
-IceAge
-IceCream
+Ice Age
+Ice Cream
 Iceland
 Icon
 Igloo
@@ -768,7 +768,7 @@ Jet
 Jeweler
 Jewels
 Jig
-JoanofArc
+Joan of Arc
 Job
 Jockey
 Jog
@@ -797,7 +797,7 @@ Kilogram
 Kilt
 Kinetic
 King
-KingArthur
+King Arthur
 Kinky
 Kiss
 Kitchen
@@ -813,7 +813,7 @@ Knob
 Knockers
 Knot
 Koala
-KungFu
+Kung Fu
 Lab
 Lace
 Ladder
@@ -864,7 +864,7 @@ Litter
 Lizard
 Lobby
 Lobster
-LochNess
+Loch Ness
 Lock
 Locust
 Log
@@ -947,7 +947,7 @@ Moist
 Mold
 Mole
 Mom
-MonaLisa
+Mona Lisa
 Monday
 Money
 Monitor
@@ -994,7 +994,7 @@ Net
 Neutron
 News
 Newton
-NewYork
+New York
 Niece
 Night
 Nightmare
@@ -1007,7 +1007,7 @@ Nordic
 Nose
 Note
 Notification
-NotreDame
+Notre Dame
 Novel
 Nude
 Nurse
@@ -1293,7 +1293,7 @@ Scratch
 Screen
 Screw
 Scroll
-ScubaDiver
+Scuba Diver
 Scuff
 Seal
 Seashell
