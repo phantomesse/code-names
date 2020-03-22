@@ -25,9 +25,8 @@ if (!isProd) {
   );
 }
 
-app.get('/', (request, response) => {
-  response.send('hello world');
-});
+// Serve the Angular app.
+app.use(express.static('build/frontend'));
 
 /**
  * Retrieves the card objects JSON for a given session name.

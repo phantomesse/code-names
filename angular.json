@@ -1,0 +1,51 @@
+  
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "frontend": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": ".",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "build/frontend",
+            "index": "frontend/index.html",
+            "main": "frontend/main.ts",
+            "tsConfig": "tsconfig.frontend.json",
+            "aot": false,
+            "assets": ["frontend/favicon.ico", "frontend/assets"],
+            "styles": ["frontend/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "frontend/environments/environment.ts",
+                  "with": "frontend/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "frontend:build"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "frontend"
+}
