@@ -14,63 +14,124 @@ $accent-color: $blue;
   height: 100%;
   width: 100%;
 
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     flex-direction: column;
 
     header {
+      min-height: 50%;
       width: 100%;
+    }
+
+    header,
+    main {
+      height: max-content;
     }
   }
 }
 
 header,
 main {
-  align-items: center;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: center;
+  height: 100%;
   padding: 4vmin;
 }
 
 header {
+  align-items: center;
   background: $gray;
-  width: 40%;
   box-sizing: border-box;
+  flex-shrink: 0;
+  width: 40%;
 
   h1 {
     color: $accent-color;
     font: 8vmin $heading-font-family;
-  }
-}
-
-form {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  justify-content: center;
-  width: 60vmin;
-
-  input {
-    background: $light-gray;
-    border: 0;
-    font: inherit;
-    text-align: center;
-    padding: 2vmin;
-    box-sizing: border-box;
-    outline: none;
-    color: $white;
-    width: 100%;
+    margin: 0;
   }
 
   button {
-    margin-top: 1vmin;
-
     &:active,
     &:focus,
     &:hover {
       color: $accent-color;
+    }
+  }
+}
+
+form {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 100%;
+  width: 60vmin;
+
+  input {
+    background: $dark-gray;
+    border: 0;
+    box-sizing: border-box;
+    color: $white;
+    font: inherit;
+    margin-bottom: 1vmin;
+    outline: none;
+    padding: 2vmin;
+    text-align: center;
+    width: 100%;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: $darker-gray;
+    }
+  }
+}
+
+main {
+  flex-grow: 1;
+
+  h2 {
+    color: $white;
+    font: 4vmin $heading-font-family;
+    margin: 0;
+  }
+
+  ol {
+    margin-bottom: 8vmin;
+  }
+
+  form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  button {
+    padding: 1vmin 2vmin;
+    margin: 1vmin 1vmin 0 0;
+
+    &.blue {
+      background: $blue;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: $dark-blue;
+      }
+    }
+
+    &.red {
+      background: $red;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: $dark-red;
+      }
     }
   }
 }

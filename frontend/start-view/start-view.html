@@ -9,4 +9,23 @@
   </form>
 </header>
 
-<main></main>
+<main>
+  <h2>How to play</h2>
+  <ol>
+    <li>In a arcu a enim mattis auctor.</li>
+    <li>Nam a lacus vitae dui auctor sollicitudin vel et arcu.</li>
+    <li>Curabitur ac ligula semper, pharetra risus quis, aliquam diam.</li>
+    <li>Integer elementum mi eget est mattis, non rhoncus massa ultricies.</li>
+    <li>Proin semper elit id sapien bibendum, id sollicitudin nulla pretium.
+    </li>
+    <li>Aliquam ornare tortor at leo commodo, sit amet scelerisque elit
+      placerat.</li>
+  </ol>
+
+  <h2>Join an existing game</h2>
+  <form>
+    <button *ngFor="let session of existingSessions" [ngClass]="session.color">
+      {{session.sessionName}}
+    </button>
+  </form>
+</main>

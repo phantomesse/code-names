@@ -7,6 +7,18 @@ import { Component } from '@angular/core';
 })
 export class StartViewComponent {
   sessionName: string = 'i-am-cool';
+  existingSessions: { sessionName: string; color: string }[] = [
+    { sessionName: 'hello', color: 'red' },
+    { sessionName: 'hello', color: 'blue' },
+    { sessionName: 'wordl', color: 'red' },
+    { sessionName: 'hi', color: 'red' },
+    { sessionName: 'omg', color: 'blue' },
+    { sessionName: 'yasss', color: 'red' },
+    { sessionName: 'wordl', color: 'blue' },
+    { sessionName: 'hi', color: 'red' },
+    { sessionName: 'omg', color: 'blue' },
+    { sessionName: 'yasss', color: 'blue' }
+  ];
 
   updateSessionName(sessionName): void {
     this.sessionName = sessionName.replace(' ', '-');

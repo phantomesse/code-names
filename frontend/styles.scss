@@ -6,7 +6,7 @@ body {
   background: $dark-gray;
   border: 0;
   color: $white;
-  font: 4vmin $body-font-family;
+  font: 3vmin $body-font-family;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -14,10 +14,13 @@ body {
 }
 
 button {
+  align-items: center;
   background: none;
   border: 0;
   color: $white;
   cursor: pointer;
+  display: flex;
   font: inherit;
+  justify-content: center;
   outline: none;
 }
