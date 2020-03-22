@@ -5,13 +5,28 @@ const path = require('path');
 const CardType = require('./card-type.js');
 
 const WORDS_FILE_PATH = path.join(__dirname, '../data/codenames-words.json');
+const MADDIE_WORDS_FILE_PATH = path.join(__dirname, '../data/codenames-maddie.json');
+
+const INPUT_WORD_PATHS = [
+  WORDS_FILE_PATH,
+  MADDIE_WORDS_FILE_PATH
+];
+
 const DEATH_CARD_COUNT = 1;
 
 /// Generates random data for each game session.
 class DataGenerator {
   constructor() {
     /// All words in an array.
-    this.words = JSON.parse(fs.readFileSync(WORDS_FILE_PATH, 'utf8'));
+    var tempWords = [];
+    console.log("Loading words from: ");
+    INPUT_WORD_PATHS.forEach(path => {
+      console.log(path);
+      tempWords = tempWords.concat(JSON.parse(fs.readFileSync(path, 'utf8')));
+    });
+    this.words = [...new Set(tempWords)];
+    console.log("Loaded " + this.words.length.toString() + " words and removed "
+        + (tempWords.length - this.words.length).toString() + " duplicates");
   }
 
   /// Retrieves a random array of words.
