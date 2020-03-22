@@ -18,13 +18,17 @@ $accent-color: $blue;
     flex-direction: column;
 
     header {
-      min-height: 50%;
+      min-height: 40%;
       width: 100%;
     }
 
     header,
     main {
       height: max-content;
+    }
+
+    .how-to-play {
+      display: none;
     }
   }
 }
@@ -36,7 +40,7 @@ main {
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  padding: 4vmin;
+  padding: 10vmin 4vmin;
 }
 
 header {
@@ -111,8 +115,8 @@ main {
   }
 
   button {
-    padding: 1vmin 2vmin;
-    margin: 1vmin 1vmin 0 0;
+    padding: 2vmin 4vmin;
+    margin: 2vmin 2vmin 0 0;
 
     &.blue {
       background: $blue;
