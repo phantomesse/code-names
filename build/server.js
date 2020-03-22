@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const http_1 = require("http");
-const words_controller_1 = __importDefault(require("./backend/words-controller"));
-console.log(words_controller_1.default.getWords());
+const sessions_controller_1 = __importDefault(require("./backend/sessions-controller"));
+const sessionsController = new sessions_controller_1.default();
 const app = express_1.default();
 // Get whether the app is running in prod.
 const isProd = process.argv.includes('--prod');
@@ -23,6 +23,18 @@ if (!isProd) {
 }
 app.get('/', (request, response) => {
     response.send('hello world');
+});
+/**
+ * Retrieves the card objects JSON for a given session name.
+ *
+ * If the session name exists, then return the existing session. If the session
+ * name does not exist, then create a new session and return that session.
+ */
+app.get('/api/get', (request, response) => {
+    const sessionName = request.query;
+    console.log(sessionName);
+    response.send({});
+    // if(sessionsController.sessionNames.includes())
 });
 // Listen on port.
 const server = new http_1.Server(app);

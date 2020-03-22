@@ -28,6 +28,17 @@ export default class _SessionsController {
     return session;
   }
 
+  getExistingSession(sessionName: string): SessionModel {
+    if (!this.sessionNameToSessionMap.has(sessionName)) {
+      console.error(
+        `could not get existing session (${sessionName}) because it does not
+        exist`
+      );
+      return null;
+    }
+    return this.sessionNameToSessionMap.get(sessionName);
+  }
+
   flipCard(sessionName: string, word: string): SessionModel {
     if (!this.sessionNameToSessionMap.has(sessionName)) {
       console.error(

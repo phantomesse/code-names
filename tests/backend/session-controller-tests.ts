@@ -41,6 +41,31 @@ describe('sessions controller - addNewSession()', function() {
   });
 });
 
+describe('session controller getExistingSession()', function() {
+  beforeEach(function() {
+    this.sessionsController = new SessionsController();
+    this.consoleErrorStub = sinon.stub(console, 'error');
+  });
+
+  afterEach(function() {
+    this.consoleErrorStub.restore();
+  });
+
+  it('get existing session', function() {
+    const sessionName = 'hello-world';
+    this.sessionsController.addNewSession(sessionName);
+    let session = this.sessionsController.getExistingSession(sessionName);
+    expect(session).not.to.be.null;
+  });
+
+  it('logs an error and returns null if trying to get a session that does not exist', function() {
+    const sessionName = 'hello-world';
+    let session = this.sessionsController.getExistingSession(sessionName);
+    expect(session).to.be.null;
+    expect(this.consoleErrorStub.calledOnce).to.be.true;
+  });
+});
+
 describe('session controller flipCard()', function() {
   beforeEach(function() {
     this.sessionsController = new SessionsController();

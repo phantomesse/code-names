@@ -2,10 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import { Server } from 'http';
 import socketIO from 'socket.io';
+import SessionsController from './backend/sessions-controller';
 
-import wordsController from './backend/words-controller';
-console.log(wordsController.getWords());
-
+const sessionsController = new SessionsController();
 const app: express.Application = express();
 
 // Get whether the app is running in prod.
@@ -27,6 +26,20 @@ if (!isProd) {
 
 app.get('/', (request, response) => {
   response.send('hello world');
+});
+
+/**
+ * Retrieves the card objects JSON for a given session name.
+ *
+ * If the session name exists, then return the existing session. If the session
+ * name does not exist, then create a new session and return that session.
+ */
+app.get('/api/get', (request, response) => {
+  const sessionName = request.query.sessionName;
+  if (sessionsController.sessionNames.includes(sessionName)) {
+    return;
+    sessions;
+  }
 });
 
 // Listen on port.
