@@ -1,4 +1,4 @@
-import { CardModel } from './card-model';
+import { CardModel, CardType } from './card-model';
 
 export default class SessionModel {
   private sessionName: string;
@@ -17,7 +17,7 @@ export default class SessionModel {
     for (let card of this.wordToCardMap.values()) {
       cards.push({
         word: card.word,
-        type: card.cardType.toString(),
+        type: CardType[card.cardType],
         isFlipped: card.isFlipped
       });
     }

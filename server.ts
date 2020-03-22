@@ -3,6 +3,7 @@ import cors from 'cors';
 import { Server } from 'http';
 import socketIO from 'socket.io';
 import SessionsController from './backend/sessions-controller';
+import SessionModel from './backend/session-model';
 
 const sessionsController = new SessionsController();
 const app: express.Application = express();
@@ -36,9 +37,18 @@ app.get('/', (request, response) => {
  */
 app.get('/api/get', (request, response) => {
   const sessionName = request.query.sessionName;
+  let session: SessionModel = null;
   if (sessionsController.sessionNames.includes(sessionName)) {
-    return;
-    sessions;
+    session = sessionsController.getExistingSession(sessionName);
+  } else {
+    session = sessionsController.addNewSession(sessionName);
+  }
+  if (session === null) {
+    response.send({
+      error: `could not find or create session (${sessionName})`
+    });
+  } else {
+    response.send(session.cardsObject);
   }
 });
 

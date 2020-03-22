@@ -31,10 +31,22 @@ app.get('/', (request, response) => {
  * name does not exist, then create a new session and return that session.
  */
 app.get('/api/get', (request, response) => {
-    const sessionName = request.query;
-    console.log(sessionName);
-    response.send({});
-    // if(sessionsController.sessionNames.includes())
+    const sessionName = request.query.sessionName;
+    let session = null;
+    if (sessionsController.sessionNames.includes(sessionName)) {
+        session = sessionsController.getExistingSession(sessionName);
+    }
+    else {
+        session = sessionsController.addNewSession(sessionName);
+    }
+    if (session === null) {
+        response.send({
+            error: `could not find or create session (${sessionName})`
+        });
+    }
+    else {
+        response.send(session.cardsObject);
+    }
 });
 // Listen on port.
 const server = new http_1.Server(app);
