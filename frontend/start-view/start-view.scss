@@ -1,0 +1,76 @@
+@import '../resources/colors';
+@import '../resources/fonts';
+
+// Random accent color for the homepage.
+//
+// This will change every time the server restarts.
+$accent-color: $blue;
+@if (random() > 0.5) {
+  $accent-color: $red;
+}
+
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+
+    header {
+      width: 100%;
+    }
+  }
+}
+
+header,
+main {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  padding: 4vmin;
+}
+
+header {
+  background: $gray;
+  width: 40%;
+  box-sizing: border-box;
+
+  h1 {
+    color: $accent-color;
+    font: 8vmin $heading-font-family;
+  }
+}
+
+form {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  width: 60vmin;
+
+  input {
+    background: $light-gray;
+    border: 0;
+    font: inherit;
+    text-align: center;
+    padding: 2vmin;
+    box-sizing: border-box;
+    outline: none;
+    color: $white;
+    width: 100%;
+  }
+
+  button {
+    margin-top: 1vmin;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}

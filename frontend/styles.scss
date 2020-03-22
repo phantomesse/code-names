@@ -1,4 +1,23 @@
+@import 'resources/colors';
+@import 'resources/fonts';
+
 html,
 body {
-  background: hotpink;
+  background: $dark-gray;
+  border: 0;
+  color: $white;
+  font: 4vmin $body-font-family;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+button {
+  background: none;
+  border: 0;
+  color: $white;
+  cursor: pointer;
+  font: inherit;
+  outline: none;
 }

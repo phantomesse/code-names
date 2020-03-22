@@ -1,0 +1,12 @@
+<header>
+  <h1>Code Names</h1>
+
+  <form>
+    <input #input type="text" [value]="sessionName"
+      (keyup)="updateSessionName(input.value)"
+      (keyup.enter)="createNewSession()" />
+    <button>create new game</button>
+  </form>
+</header>
+
+<main></main>

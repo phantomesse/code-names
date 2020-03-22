@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { StartViewComponent } from '../start-view/start-view';
 
 @Component({
   selector: 'root',
@@ -15,7 +16,7 @@ export class RootComponent {
 }
 
 @NgModule({
-  declarations: [RootComponent],
+  declarations: [RootComponent, StartViewComponent],
   imports: [BrowserModule, HttpClientModule],
   bootstrap: [RootComponent]
 })

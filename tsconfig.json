@@ -4,6 +4,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "outDir": "build",
+    "experimentalDecorators": true
   },
   "include": ["server.ts"],
 }
