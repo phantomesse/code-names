@@ -12,6 +12,18 @@ export default class SessionModel {
     }
   }
 
+  get cardsObject(): { word: string; type: string; isFlipped: boolean }[] {
+    const cards = [];
+    for (let card of this.wordToCardMap.values()) {
+      cards.push({
+        word: card.word,
+        type: card.cardType.toString(),
+        isFlipped: card.isFlipped
+      });
+    }
+    return cards;
+  }
+
   flipCard(word: string): void {
     if (!this.wordToCardMap.has(word)) {
       console.error(
@@ -20,7 +32,7 @@ export default class SessionModel {
       );
       return;
     }
-    let card = this.wordToCardMap[word];
+    let card = this.wordToCardMap.get(word);
     if (card.isFlipped) {
       console.error(
         `could not flip word (${word}) in session (${this.sessionName}) because
@@ -28,6 +40,6 @@ export default class SessionModel {
       );
       return;
     }
-    this.wordToCardMap[word].isFlipped = true;
+    this.wordToCardMap.get(word).isFlipped = true;
   }
 }
