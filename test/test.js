@@ -7,13 +7,13 @@ const dataGenerator = require('../app/data-generator.js');
 describe('DataGenerator tests', function() {
   it('#getWords returns the correct number of words', function() {
     const wordCount = 25;
-    const words = dataGenerator.getWords(wordCount);
+    const words = dataGenerator.getWords(wordCount, []);
     assert.strictEqual(words.length, wordCount);
   });
 
   it('#getWords returns words that are all different', function() {
     const wordCount = 25;
-    const wordSet = new Set(dataGenerator.getWords(wordCount));
+    const wordSet = new Set(dataGenerator.getWords(wordCount, []));
     assert.strictEqual(wordSet.size, wordCount);
   });
 
