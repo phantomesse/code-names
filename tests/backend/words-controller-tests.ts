@@ -12,4 +12,15 @@ describe('words controller', function() {
     let words = wordsController.getWords();
     expect(new Set(words)).length(words.length);
   });
+
+  it('getWords() excludes excluded words', function() {
+    let excludedWords = wordsController.getWords();
+    expect(excludedWords).not.empty;
+
+    let words = wordsController.getWords(excludedWords);
+    expect(words).not.empty;
+    for (const excludedWord of excludedWords) {
+      expect(words).not.include(excludedWord);
+    }
+  });
 });

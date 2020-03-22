@@ -16,12 +16,14 @@ class _WordsController {
       .filter(word => word.length > 0);
   }
 
-  /** Returns 25 random words. */
-  getWords(): string[] {
+  /** Returns 25 random words optionally excluding a list of given words. */
+  getWords(excludeWords: string[] = []): string[] {
     let words: Set<string> = new Set();
     while (words.size < 25) {
       let randomIndex = Math.floor(Math.random() * this._words.length);
-      words.add(this._words[randomIndex]);
+      let word = this._words[randomIndex];
+      if (excludeWords.includes(word)) continue;
+      words.add(word);
     }
     return [...words];
   }
