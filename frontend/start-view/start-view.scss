@@ -1,14 +1,6 @@
 @import '../resources/colors';
 @import '../resources/fonts';
 
-// Random accent color for the homepage.
-//
-// This will change every time the server restarts.
-$accent-color: $blue;
-@if (random() > 0.5) {
-  $accent-color: $red;
-}
-
 :host {
   display: flex;
   height: 100%;

@@ -1,3 +1,4 @@
+Africa
 Abstract
 Ace
 Acid
@@ -312,7 +313,7 @@ Clam
 Clap
 Clay
 Cleopatra
-Cliche
+Cliche 
 Cliff
 Cloak
 Clock
@@ -446,6 +447,7 @@ Diver
 Doctor
 Dog
 Doggy
+Doghouse
 Doll
 Dollar
 Dominate
@@ -472,6 +474,7 @@ Driver
 Drone
 Drop
 Drum
+Drums
 Drunk
 Dryer
 Duck
@@ -488,7 +491,7 @@ Eat
 Ebony
 Economy
 Eden
-Edison
+Edison 
 Egg
 Egypt
 Einstein
@@ -665,7 +668,7 @@ Gumball
 Gutter
 Gymnast
 Hair
-Haircut
+Haircut 
 Half
 Halloween
 Ham
@@ -749,7 +752,7 @@ Internet
 Invitation
 Iron
 Ironic
-Issues
+Issues 
 Ivory
 Ivy
 Jack
@@ -891,6 +894,7 @@ Mail
 Mailbox
 Makeup
 Mammoth
+Manboobs
 Manicure
 Map
 Maple
@@ -989,9 +993,9 @@ Nerve
 Nest
 Net
 Neutron
+New York
 News
 Newton
-New York
 Niece
 Night
 Nightmare
@@ -1032,7 +1036,7 @@ Organ
 Organize
 Orgasm
 Orgy
-Ottoman
+Ottoman 
 Outer
 Outside
 Ovation
@@ -1051,7 +1055,7 @@ Palm
 Pan
 Pants
 Paper
-Papertrail
+Paper trail
 Parachute
 Parade
 Park
@@ -1279,7 +1283,7 @@ Scale
 Scar
 Scarecrow
 Scared
-Schedule
+Schedule 
 School
 Scientist
 Score

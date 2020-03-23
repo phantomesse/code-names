@@ -10,10 +10,18 @@
 
   &.red h1 {
     color: $red;
+
+    &:hover {
+      color: $dark-red;
+    }
   }
 
   &.blue h1 {
     color: $blue;
+
+    &:hover {
+      color: $dark-blue;
+    }
   }
 }
 
@@ -28,10 +36,20 @@ header {
   padding: 2vmin 2vmin calc(2vmin - 4px);
 
   h1 {
-    color: $red;
+    color: $accent-color;
     font: 16px $heading-font-family;
     line-height: 16px;
     margin: 0;
+    transition: color 0.3s linear 0s;
+
+    &:hover {
+      color: $dark-accent-color;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 
   .session-name {

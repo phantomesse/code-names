@@ -12,3 +12,13 @@ $dark-blue: #0091b1;
 
 $black: #0b0b0f;
 $dark-black: #000;
+
+// Random accent color for the homepage.
+//
+// This will change every time the server restarts.
+$accent-color: $blue;
+$dark-accent-color: $dark-blue;
+@if (random() > 0.5) {
+  $accent-color: $red;
+  $dark-accent-color: $dark-red;
+}
