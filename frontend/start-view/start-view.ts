@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'start-view',
@@ -20,6 +21,8 @@ export class StartViewComponent {
     { sessionName: 'yasss', color: 'blue' }
   ];
 
+  constructor(private _router: Router) {}
+
   updateSessionName(sessionName): void {
     this.sessionName = sessionName.replace(' ', '-');
   }
@@ -27,6 +30,10 @@ export class StartViewComponent {
   createNewSession(): void {
     this.sessionName = this.sessionName.trim();
     if (this.sessionName.length === 0) return;
-    console.log('creating a new session for ' + this.sessionName);
+    this.goToSession(this.sessionName);
+  }
+
+  goToSession(sessionName: string): void {
+    this._router.navigateByUrl('/' + sessionName);
   }
 }

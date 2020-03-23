@@ -24,7 +24,12 @@ $accent-color: $blue;
 
     header,
     main {
+      align-items: center;
       height: max-content;
+    }
+
+    main form {
+      justify-content: center;
     }
 
     .how-to-play {

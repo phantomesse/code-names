@@ -1,0 +1,63 @@
+@import '../resources/colors';
+
+:host {
+  align-items: center;
+  background: $gray;
+  cursor: pointer;
+  display: flex;
+  font-size: 3vw;
+  justify-content: center;
+  transition: background 0.1s linear 0s;
+
+  &:hover {
+    background: $dark-gray;
+  }
+}
+
+:host.flipped {
+  pointer-events: none;
+}
+
+:host.neutral.flipped {
+  background: none;
+  color: $light-gray;
+}
+
+:host.red {
+  background: $red;
+
+  &:hover {
+    background: $dark-red;
+  }
+
+  &.spymaster.flipped {
+    background: none;
+    color: $dark-red;
+  }
+}
+
+:host.blue {
+  background: $blue;
+
+  &:hover {
+    background: $dark-blue;
+  }
+
+  &.spymaster.flipped {
+    background: none;
+    color: $dark-blue;
+  }
+}
+
+:host.assassin {
+  background: $black;
+
+  &:hover {
+    background: $dark-black;
+  }
+
+  &.spymaster.flipped {
+    background: none;
+    color: $black;
+  }
+}

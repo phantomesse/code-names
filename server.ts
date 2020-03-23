@@ -57,3 +57,9 @@ server.listen(port, () => {
   if (isProd) console.log(`Live at http://localhost:${port}!`);
   else console.log(`Backend running on http://localhost:${port}`);
 });
+
+// Socket.IO
+let io = socketIO(server);
+io.on('connection', socket => {
+  console.log('new connection');
+});

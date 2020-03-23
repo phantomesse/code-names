@@ -1,0 +1,11 @@
+<header>
+  <h1>Code Names</h1>
+  <span class="session-name">[{{sessionName}}]</span>
+  <button (click)="toggleView()">
+    {{isSpymasterView ? 'spymaster' : 'team'}} view
+  </button>
+  <button>new game</button>
+  <button>share</button>
+</header>
+
+<card *ngFor="let card of cards" [card]="card"></card>

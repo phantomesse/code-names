@@ -5,17 +5,18 @@
     <input #input type="text" [value]="sessionName"
       (keyup)="updateSessionName(input.value)"
       (keyup.enter)="createNewSession()" />
-    <button>create new game</button>
+    <button (click)="createNewSession()">create new game</button>
   </form>
 </header>
 
 <main>
-  <h2 class="how-to-play">How to play</h2>
+  <h2 class=" how-to-play">How to play</h2>
   <ol class="how-to-play">
     <li>In a arcu a enim mattis auctor.</li>
     <li>Nam a lacus vitae dui auctor sollicitudin vel et arcu.</li>
     <li>Curabitur ac ligula semper, pharetra risus quis, aliquam diam.</li>
-    <li>Integer elementum mi eget est mattis, non rhoncus massa ultricies.</li>
+    <li>Integer elementum mi eget est mattis, non rhoncus massa ultricies.
+    </li>
     <li>Proin semper elit id sapien bibendum, id sollicitudin nulla pretium.
     </li>
     <li>Aliquam ornare tortor at leo commodo, sit amet scelerisque elit
@@ -24,7 +25,8 @@
 
   <h2>Join an existing game</h2>
   <form>
-    <button *ngFor="let session of existingSessions" [ngClass]="session.color">
+    <button *ngFor="let session of existingSessions" [ngClass]="session.color"
+      (click)="goToSession(session.sessionName)">
       {{session.sessionName}}
     </button>
   </form>

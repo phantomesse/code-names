@@ -446,7 +446,6 @@ Diver
 Doctor
 Dog
 Doggy
-Doghouse
 Doll
 Dollar
 Dominate
@@ -473,7 +472,6 @@ Driver
 Drone
 Drop
 Drum
-Drums
 Drunk
 Dryer
 Duck
@@ -893,7 +891,6 @@ Mail
 Mailbox
 Makeup
 Mammoth
-Manboobs
 Manicure
 Map
 Maple

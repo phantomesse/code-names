@@ -1,0 +1,45 @@
+@import '../resources/colors';
+@import '../resources/fonts';
+
+:host {
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: min-content repeat(5, 1fr);
+  height: 100%;
+
+  &.red h1 {
+    color: $red;
+  }
+
+  &.blue h1 {
+    color: $blue;
+  }
+}
+
+header {
+  align-items: center;
+  background: $darker-gray;
+  display: flex;
+  font-size: 16px;
+  grid-column: 1 / -1;
+  height: min-content;
+  line-height: 16px;
+  padding: 2vmin 2vmin calc(2vmin - 4px);
+
+  h1 {
+    color: $red;
+    font: 16px $heading-font-family;
+    line-height: 16px;
+    margin: 0;
+  }
+
+  .session-name {
+    margin-right: auto;
+    margin-left: 8px;
+  }
+
+  button {
+    margin-left: 8px;
+  }
+}
