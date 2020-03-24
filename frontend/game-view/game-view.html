@@ -1,6 +1,10 @@
 <header>
   <h1><a href="/">Code Names</a></h1>
   <span class="session-name">[{{sessionName}}]</span>
+
+  <span class="cards-left-message red">{{redCardsLeftMessage}}</span>
+  <span class="cards-left-message blue">{{blueCardsLeftMessage}}</span>
+
   <button (click)="toggleView()">
     {{isSpymasterView ? 'spymaster' : 'team'}} view
   </button>

@@ -57,6 +57,18 @@ header {
     margin-left: 8px;
   }
 
+  .cards-left-message {
+    &.red {
+      color: $red;
+      margin-right: 16px;
+    }
+
+    &.blue {
+      color: $blue;
+      margin-right: auto;
+    }
+  }
+
   button {
     margin-left: 8px;
   }
