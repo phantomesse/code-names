@@ -120,7 +120,11 @@ io.on('connection', function (socket) {
 
   socket.on('flip word', function (word, sessionName) {
     console.log(`flipped word (${word}) in session (${sessionName})`);
-    app.getGameSession(sessionName).flipWord(word);
+
+    // this doesn't do anything great but it prevents the server from crashing
+    if (app.getGameSession(sessionName) !== undefined) {
+          app.getGameSession(sessionName).flipWord(word);
+    }
     socket.broadcast.emit('flip word', word, sessionName);
   });
 });
